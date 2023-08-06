@@ -1,0 +1,15 @@
+database field
+-userId
+-username
+-userpassword
+-discription
+-profile picture(optional)
+-background picture(optional)
+-isFreind
+-isSubsrcibe
+
+-userI
+-postId
+-content(text)
+-content(picture,video,etc..) is optional.
+-Date(optional)
