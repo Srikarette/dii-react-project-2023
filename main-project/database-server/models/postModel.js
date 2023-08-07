@@ -5,10 +5,21 @@ const mongoose = require('mongoose');
 const postSchema = mongoose.Schema({
   content: {
     type: String,
-    required: [true, 'write down something before post']
+    required: [true, 'A user must write content before post'],
   },
-  Date: {
+  formUser: {
+    type: String,
+  },
+  like:{
+    type: Number,
+    default: 0,
+  },
+  postDate: {
     type: Date,
+  },
+  isBookMark: {
+    type: Boolean,
+    default: false,
   },
 });
 

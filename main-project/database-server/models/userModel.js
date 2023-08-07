@@ -1,32 +1,37 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-  uname: {
+const toursSchema = mongoose.Schema({
+  username: {
     type: String,
-    required: [true, 'A user must have a name'],
+    required: [true, 'A user must have a username'],
     unique: true,
   },
   password: {
-    type: String,
+    type: String, // Change the type to String
     required: [true, 'A user must have a password'],
+    default: '0', // Set the default as a string value, e.g., '0'
   },
   profileDescription: {
     type: String,
   },
-  profilePic: {
+  profilePicture: {
     type: String,
   },
-  profileBgPic: {
+  profileBgPicture: {
     type: String,
   },
   isFriend: {
     type: Boolean,
+    default: false,
   },
   isSubscribe: {
     type: Boolean,
+    default: false,
   },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', toursSchema);
 
 module.exports = User;

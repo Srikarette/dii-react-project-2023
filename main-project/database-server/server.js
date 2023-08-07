@@ -13,13 +13,9 @@ mongoose
   })
   .then(() => {
     console.log('DB Connection successful!');
-  })  
-  .catch((err) => {
-    console.error('DB Connection failed:', err);
   });
-  
 
-const app = require('../database-server/app');
+const app = require('./app');
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App listening on ${port}...`);

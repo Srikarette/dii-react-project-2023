@@ -1,7 +1,7 @@
 {
-  "name": "react-project",
+  "name": "camt-tours",
   "version": "1.0.0",
-  "description": "project react",
+  "description": "exercise-2 camt-tour",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
