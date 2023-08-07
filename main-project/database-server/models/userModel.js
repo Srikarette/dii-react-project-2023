@@ -1,32 +1,30 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    username: {
-        type: String,
-        required: [true, 'A user must have a username'],
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: [true, 'A user must have a password'],
-    },
-    profileDescription: {
-        type: String,
-    },
-    profilePicture: {
-        type: String,
-    },
-    profileBgPicture: {
-        type: String,
-    },
-    isFriend: {
-        type: Boolean,
-        default: false
-    },
-    isSubscribe: {
-        type: Boolean,
-        default: false
-    },
+  uname: {
+    type: String,
+    required: [true, 'A user must have a name'],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, 'A user must have a password'],
+  },
+  profileDescription: {
+    type: String,
+  },
+  profilePic: {
+    type: String,
+  },
+  profileBgPic: {
+    type: String,
+  },
+  isFriend: {
+    type: Boolean,
+  },
+  isSubscribe: {
+    type: Boolean,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

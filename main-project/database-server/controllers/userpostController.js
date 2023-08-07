@@ -1,10 +1,10 @@
 'use strict';
 
-const postModel = require('../models/userpostModel');
+const Post = require('../models/userpostModel');
 
 exports.getAllPosts = async (req, res) => {
   try {
-    const posts = await postModel.find();
+    const posts = await Post.find();
 
     res.status(200).json({
       status: 'Success',
@@ -21,7 +21,7 @@ exports.getAllPosts = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   try {
-    const post = await postModel.create(req.body);
+    const post = await Post.create(req.body);
 
     res.status(200).json({
       status: 'Success',
@@ -37,7 +37,7 @@ exports.createPost = async (req, res) => {
 
 exports.getPost = async (req, res) => {
   try {
-    const post = await postModel.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
 
     res.status(200).json({
       status: 'Success',
@@ -53,7 +53,7 @@ exports.getPost = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   try {
-    const post = await postModel.findByIdAndUpdate(req.params.id, req.body, {
+    const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -72,7 +72,7 @@ exports.updatePost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
-    await postModel.findByIdAndDelete(req.params.id);
+    await Post.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
       status: 'Success',
