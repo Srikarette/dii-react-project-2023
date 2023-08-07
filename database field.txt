@@ -12,4 +12,4 @@ database field
 -postId
 -content(text)
 -content(picture,video,etc..) is optional.
--Date(optional)
+-Date(optional)install mongoose
