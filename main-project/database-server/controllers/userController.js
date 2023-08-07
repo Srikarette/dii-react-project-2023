@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'Failed',
-      message: err.message,
+      message: err,
     });
   }
 };
@@ -23,14 +23,14 @@ exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
 
-    res.status(201).json({
+    res.status(200).json({
       status: 'Success',
-      data: user,
+      message: user,
     });
   } catch (err) {
     res.status(400).json({
       status: 'Failed',
-      message: err.message,
+      message: err,
     });
   }
 };
@@ -41,12 +41,12 @@ exports.getUser = async (req, res) => {
 
     res.status(200).json({
       status: 'Success',
-      data: user,
+      message: user,
     });
   } catch (err) {
     res.status(400).json({
       status: 'Failed',
-      message: err.message,
+      message: err,
     });
   }
 };
@@ -60,12 +60,12 @@ exports.updateUser = async (req, res) => {
 
     res.status(200).json({
       status: 'Success',
-      data: user,
+      data: { user },
     });
   } catch (err) {
     res.status(400).json({
       status: 'Failed',
-      message: err.message,
+      message: err,
     });
   }
 };
@@ -81,7 +81,7 @@ exports.deleteUser = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'Failed',
-      message: err.message,
+      message: err,
     });
   }
 };
