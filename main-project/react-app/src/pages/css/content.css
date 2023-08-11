@@ -68,13 +68,13 @@ a{
     padding: 25px;
     text-align: justify;
 }
+/* Start footer section (like button) */
 .post-footer{
-    /* width: 85%; */
+    margin: 10px 0px 0px 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-/* Start footer section (like button) */
 .post-footer p{
     margin: 0px 20px 0px 0px;
 }
