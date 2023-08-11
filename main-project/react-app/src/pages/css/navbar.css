@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0px;
+}
+
+.navbar{
+    width: 450px;
+    height: 960px;
+    margin: 0px 0px 0px 0px;
+    background: green;
+}
+.profile{
+    padding: 12px;
+    display: flex;
+}
+.profilePicture{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
