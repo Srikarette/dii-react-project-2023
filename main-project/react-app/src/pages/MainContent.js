@@ -1,11 +1,12 @@
 import './css/content.css';
 
-
-
 function MainContent() {
   return (
     <div className="main-content">
-      <h1>This is main content box</h1>
+      <div className='header'>
+        <button>Discovery</button>
+        <button>Subscribe</button>
+      </div>
     </div>
   
   );
