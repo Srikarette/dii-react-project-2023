@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 
 import MainContent from './pages/MainContent';
 import Navbar from './pages/Navbar';
+import Userself from './Selfe_userpage/selfUserPage';
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <div className='mainDisplay'>
       <Navbar />
-      <MainContent />
+      {/* <MainContent /> */}
+      <Userself />
     </div>
   </React.StrictMode>
   

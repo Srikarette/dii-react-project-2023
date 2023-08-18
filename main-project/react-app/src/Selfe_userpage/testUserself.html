@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+            background-color: #f2f2f2;
+        }
+
+        .backgroudprofile {
+            width: 500px;
+            height: 470px;
+            border: 1px solid black;
+            
+            height: 85%;
+            /* background-color: aqua; */
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .backgroudpro_img {
+            width: 100%; /* Set the width to 100% to make the image responsive */
+            max-width: 500px; /* Limit the maximum width to 500px */
+            height: 100px; /* Maintain the aspect ratio */
+            border: 1px solid rgb(223, 23, 23);
+            display: flex;
+            flex-direction: row;
+        }
+
+        .profile {
+            width: 50px; /* Set a fixed width for the circular profile image */
+            height: 50px; /* Maintain a square aspect ratio */
+            border: 1px solid green;
+            border-radius: 50%; /* Make the image circular */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide any content that overflows the circular boundary */
+        }
+
+        .profile img {
+            width: 100%; /* Ensure the image covers the entire circular container */
+            height: 100%; /* Maintain the aspect ratio */
+            object-fit: cover; /* Maintain the aspect ratio while covering the container */
+        }
+        .content{
+            display: flex;
+            flex-direction: row;
+        width:370px ;
+           align-items: center;
+           justify-content: flex-start;
+           margin-left: 30px;
+
+        }
+        .detail{
+            margin-left: 10px;
+        }
+   .editprofile{
+    margin-left: 100px;
+   }
+
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class='header'>
+          <button>Discovery</button>
+          <button>Subscribe</button>
+        </div>
+        <div class = "backgroudprofile">
+            <div class="backgroudpro_img">
+            
+            </div>
+
+<div class = "content">
+    <div class = "profile">
+        <img src="/main-project/react-app/src/pages/images/TestProfilePic.png" alt="">
+    </div>
+
+<div class="detail">
+    <p class = "username"> UserName </p>
+    <p class = "userdescript"> Hello World !!!</p></div>
+
+<button class = "editprofile">Edit Profile</button>
+</div>
+</div>
+       
+
+
+
+        </div>
+
+
+</body>
+</html>
