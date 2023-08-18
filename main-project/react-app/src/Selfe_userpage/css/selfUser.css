@@ -1,0 +1,83 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.backgroudprofile {
+    width:700px;
+  margin-top: 20px;
+    border: 1px solid black;
+    
+    height: 300px;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.backgroudpro_img {
+    width: 100%; /* Set the width to 100% to make the image responsive */
+    max-width: 700px; /* Limit the maximum width to 500px */
+    height: 300px; /* Maintain the aspect ratio */
+    border: 1px solid rgb(223, 23, 23);
+    display: flex;
+    flex-direction: row;
+}
+
+.profile {
+    width: 30px; /* Set a fixed width for the circular profile image */
+    height: 30px; /* Maintain a square aspect ratio */
+    border: 1px solid green;
+    border-radius: 50%; /* Make the image circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide any content that overflows the circular boundary */
+}
+
+.profile img {
+    width: 100%; /* Ensure the image covers the entire circular container */
+    height: 100%; /* Maintain the aspect ratio */
+    object-fit: cover; /* Maintain the aspect ratio while covering the container */
+}
+.content{
+    display: flex;
+    flex-direction: row;
+width:700px ;
+   align-items: center;
+   justify-content: flex-start;
+   margin-left: 30px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+
+}
+.detail{
+    margin-left: 10px;
+}
+.editprofile{
+margin-left: 400px;
+padding: 10px;
+}
+.main-content{
+    width: 970px;
+    height: 960px;
+    margin: 0px 0px 0px 0px;
+    /* background: bisque; */
+    border-left: 2px solid black;
+    border-right:2px solid black ;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.header button{
+    width: 40%;
+    height: 50px;
+    margin: 10px 0px 0px 0px;
+}
