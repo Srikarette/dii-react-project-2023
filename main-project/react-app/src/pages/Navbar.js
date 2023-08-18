@@ -5,12 +5,12 @@ function Navbar() {
     <div className="navbar">
       <div className="profile">
         <img className="profilePicture" src="" alt=""></img>
-
         <div className="information">
           <p>Username</p>
           <div class="hover-text">Click to edit profile</div>
         </div>
       </div>
+
       <div className="side-bar">
         <div className="side-bar-content">
           <span class="container2">
