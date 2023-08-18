@@ -9,12 +9,13 @@ a{
 }
 
 .main-content{
-    width: 970px;
+    width: 60%;
     height: 960px;
     margin: 0px 0px 0px 0px;
     /* background: bisque; */
     border-left: 2px solid black;
     border-right:2px solid black ;
+    margin-right: 8%;
 }
 
 .header{

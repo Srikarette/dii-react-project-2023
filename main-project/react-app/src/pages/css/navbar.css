@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0px;
+    font-family: "montserrat",sans-serif;
 }
 
 a{
@@ -9,41 +10,188 @@ a{
 }
 
 .navbar{
-    width: 450px;
-    height: 960px;
-    margin: 0px 0px 0px 0px;
-    border-left: 2px solid black;
-    border-right:2px solid black ;
-    /* background: green; */
+    width: 400px;
+    height:inherit ;
+    /* margin: 10px; */
+    /* background: #52b788; */
+    margin-left: 0%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    
+    
 }
 .profile{
-    padding: 12px;
+    padding: 25px;
+    
     display: flex;
+    /* border-bottom:2px solid black ; */
+    cursor: pointer;
+    background: white;
+    transition:0.5s ease-out;
+    box-shadow: 0 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    
 }
 .profilePicture{
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    background-color: black;
+    
 }
 .information{
-    margin: 10px 0px 0px 30px;
-    font-size: 24px;
+    margin: 10px 0px 0px 20px;
+    font-size: 30px;
+    /* color: #40916c; */
+    color: #000;
+    text-decoration: solid;
 }
 
 .side-bar{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-top: 50px;
+    /* border-top: 2px solid rgba(0, 0, 0, 0.5);  */
+    
 }
-.side-bar-content h3{
-    margin-left: 20px;
-    margin-top: 50px;
+.side-bar-content p{
+    margin-top: 25px;
+    margin-left: 40px;
+    /* border: 2px solid black; */
+    font-size: 25px;
+    /* padding: 10px; */
 }
 
 .post-btn{
-    margin: 80px 0px 0px 20px;
-    width: 90%;
-    height: 100px;
+    position:absolute;
+    padding: 20px 130px;
+    background: #40916c;
+    border-radius: 30px;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition:0.2s;
+    margin-left: 50px;
+    margin-top:4% ;
+}
+.post-btn:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition:0.2s ease-in-out;
+    background-color: #52b788;
+
+}
+.post-btn:focus{
+    background-color: #dee2e6;
+
 }
 
+
+.hover-text {
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    transition: transform 0.3s;
+    transition:0.2s ease-in-out;
+    color: #6c757d;
+}
+.profile:hover{
+    transition: box-shadow 0.2s;
+}
+
+.profile:hover .hover-text {
+    opacity: 1;
+    color: #40916c;
+}
+
+
+
+.container1
+{
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.text1
+{
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 900;
+  position: relative;
+  color: #495057; 
+}
+
+.text1::before
+{
+  content: attr(data-text);
+  position: absolute;
+  color: #fff;
+  width: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.container1::before
+{
+  content: "";
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  background: #40916c;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.container1:hover .text1::before,.container1:hover::before
+{
+  width: 100%;
+}
+
+.container2
+{
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.text2
+{
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 900;
+  position: relative;
+  color: #40916c; 
+}
+
+.text2::before
+{
+  content: attr(data-text);
+  position: absolute;
+  color: #fff;
+  width: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.container2::before
+{
+  content: "";
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  background: #40916c;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.container2:hover .text2::before,.container2:hover::before
+{
+  width: 100%;
+}
