@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.main-content{
+    width: 60%;
+    height: 960px;
+    margin: 0px 0px 0px 0px;
+    /* background: bisque; */
+    border-left: 2px solid black;
+    border-right:2px solid black ;
+    margin-right: 8%;
+}
+
+.header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.header button{
+    width: 40%;
+    height: 50px;
+    margin: 10px 0px 0px 0px;
+}
+
+.form-container{
+    padding: 22px;
+    width: 90%;
+    height: 85%;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.username-edit{
+    background-color: blue;
+}
+
+.username-edit  input{
+    width: 500px;
+    height: 50px;
+}
+.description-edit{
+    margin: 30px 0px 0px 0px;
+    background-color: blueviolet;
+}
+.description-edit textarea{
+    width: 500px;
+    height: 200px;
+    resize: none;
+}
+

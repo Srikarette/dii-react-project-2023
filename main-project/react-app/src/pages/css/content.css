@@ -44,7 +44,7 @@ a{
 /* This is only example for generated content look like */
 
 .example-user-post{
-    border: 5px solid green;
+    /* border: 5px solid green; */
     margin-top: 20px;
 }
 .example-post-box{
