@@ -1,84 +1,111 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './css/content.css';
 
 
 function MainContent() {
+  const [posts, setPosts] = useState([]);
+  const [newPostContent, setNewPostContent] = useState('');
+
+  useEffect(() => {
+    // Fetch all posts when the component mounts
+    axios.get('/api/v1/posts')  // Use the updated backend route
+      .then(response => {
+        setPosts(response.data.data);  
+      })
+      .catch(error => {
+        console.error('Error fetching posts:', error);
+      });
+  }, []);
+  
+  const handlePostSubmit = () => {
+    // Send a POST request to create a new post
+    axios.post('/api/v1/posts', { content: newPostContent })  
+      .then(response => {
+        // Handle success by updating the posts state
+        setPosts(prevPosts => [...prevPosts, response.data.data]);
+        setNewPostContent(''); // Clear the input field
+      })
+      .catch(error => {
+        console.error('Error creating post:', error);
+      });
+  };
+
   return (
     <div className="main-content">
       <div className='header'>
         <button>Discovery</button>
         <button>Subscribe</button>
       </div>
-      
+
       <div className='post-container'>
-        {/* example-post-box is only example we need to generate it not pre-build */}
-        <div className='example-user-post' id='1'>
-          <div className='example-post-box'>
-            <div className='user-information'>
-              <button className='profilePic-btn'>Profile</button>
-              <div className='username-display'>
-                <p>example_username</p>
-              </div>
-            </div>
-            <div className='post-content'>
-                <p>Lorem Ipsum is simply dummy text of the printing 
-                  and typesetting industry. Lorem Ipsum has been the industry's 
-                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled 
-                  it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-                  remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
-                  passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                  passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
+        <div className='post-menu'>
+          <div className='post-box'>
+            <input
+              type='textarea'
+              placeholder='write something'
+              className='post-slot'
+              value={newPostContent}
+              onChange={e => setNewPostContent(e.target.value)}
+            />
           </div>
-          <div className='post-footer'>
-              <button className='like-btn'>like</button>
-              <p>99</p>
-              <button className='bookmark-btn'>save</button>
-          </div>
-          <div className='comment-section'>
-              <input type='textarea' placeholder='write comment' className='comment-slot'></input>
-              <input type='submit' className='submit-comment-btn' value={'Comment'}></input>
-              <input type='submit' className='cancel-comment-btn' value={'Cancel'}></input>
+          <div className='post-section'>
+            <input
+              type='submit'
+              className='submit-post-btn'
+              value='Post'
+              onClick={handlePostSubmit}
+            />
+            <input
+              type='submit'
+              className='cancel-post-btn'
+              value='Cancel'
+            />
           </div>
         </div>
 
-        {/* another post  */}
-        <div className='example-user-post' id='2'>
-          <div className='example-post-box'>
-            <div className='user-information'>
-              <button className='profilePic-btn'>Profile</button>
-              <div className='username-display'>
-                <p>example_username</p>
+        {/* Render fetched posts */}
+        {posts.map(post => (
+          <div key={post._id} className='user-post' id={post._id}>
+            <div className='post-box'>
+              <div className='user-information'>
+                <button className='profilePic-btn'>Profile</button>
+                <div className='username-display'>
+                  <p>{post.formUser}</p>
+                </div>
+              </div>
+              <div className='post-content'>
+                <p>{post.content}</p>
               </div>
             </div>
-            <div className='post-content'>
-                <p>Lorem Ipsum is simply dummy text of the printing 
-                  and typesetting industry. Lorem Ipsum has been the industry's 
-                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled 
-                  it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-                  remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
-                  passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                  passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+            <div className='post-footer'>
+              <button className='like-btn'>like</button>
+              <p>{post.like}</p>
+              <button className='bookmark-btn'>save</button>
+            </div>
+            <div className='comment-section'>
+              <input
+                type='textarea'
+                placeholder='write comment'
+                className='comment-slot'
+              />
+              <input
+                type='submit'
+                className='submit-comment-btn'
+                value={'Comment'}
+              />
+              <input
+                type='submit'
+                className='cancel-comment-btn'
+                value={'Cancel'}
+              />
             </div>
           </div>
-          <div className='post-footer'>
-              <button className='like-btn'>like</button>
-              <p>99</p>
-              <button className='bookmark-btn'>save</button>
-          </div>
-          <div className='comment-section'>
-              <input type='textarea' placeholder='write comment' className='comment-slot'></input>
-              <input type='submit' className='submit-comment-btn' value={'Comment'}></input>
-              <input type='submit' className='cancel-comment-btn' value={'Cancel'}></input>
-          </div>
-        </div>
-       
-       
-        {/* end of example */}
+        ))}
+
+        {/* End of fetched posts */}
       </div>
     </div>
-  
   );
 }
 

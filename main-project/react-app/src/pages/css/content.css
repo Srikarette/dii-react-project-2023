@@ -22,14 +22,31 @@
     overflow-y: scroll;
 }
 
+.post-menu{
+    margin: 0px 0px 0px 0px;
+}
+.post-slot{
+    width: 980px;
+    height: 70px;
+    border: none;
+}
+
+.submit-post-btn, .cancel-post-btn{
+    margin: 15px 0px 0px 15px;
+    float: right;
+    width: 70px;
+}
+
 /* This is only example for generated content look like */
 
-.example-user-post{
+.user-post{
     /* border: 5px solid green; */
     margin-top: 20px;
 }
-.example-post-box{
+.post-box{
     padding: 25px;
+    width: 980px;
+
     border: 1px solid black;
 }
 .user-information{

@@ -2,7 +2,7 @@
 
 const User = require('../models/userModel');
 
-exports.getAllTours = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
     const tours = await User.find();
 
@@ -19,7 +19,7 @@ exports.getAllTours = async (req, res) => {
   }
 };
 
-exports.createTour = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
     const tour = await User.create(req.body);
 
@@ -35,7 +35,7 @@ exports.createTour = async (req, res) => {
   }
 };
 
-exports.getTour = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
     const tour = await User.findById(req.params.id);
 
@@ -51,7 +51,7 @@ exports.getTour = async (req, res) => {
   }
 };
 
-exports.updateTour = async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const tour = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -70,7 +70,7 @@ exports.updateTour = async (req, res) => {
   }
 };
 
-exports.deleteTour = async (req, res) => {
+exports.deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
 

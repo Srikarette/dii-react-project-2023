@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
 const DB = process.env.DATABASE;
+
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -16,7 +17,7 @@ mongoose
   });
 
 const app = require('./app');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`App listening on ${port}...`);
 });

@@ -2,7 +2,7 @@
 
 const Post = require('../models/postModel');
 
-exports.getAllUsers = async (req, res) => {
+exports.getAllPosts = async (req, res) => {
   try {
     const users = await Post.find();
 
@@ -19,7 +19,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.createUser = async (req, res) => {
+exports.createPost = async (req, res) => {
   try {
     const user = await Post.create(req.body);
 
@@ -35,7 +35,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.getUser = async (req, res) => {
+exports.getPost = async (req, res) => {
   try {
     const user = await Post.findById(req.params.id);
 
@@ -51,7 +51,7 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.updateUser = async (req, res) => {
+exports.updatePost = async (req, res) => {
   try {
     const user = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -70,7 +70,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-exports.deleteUser = async (req, res) => {
+exports.deletePost = async (req, res) => {
   try {
     await Post.findByIdAndDelete(req.params.id);
 

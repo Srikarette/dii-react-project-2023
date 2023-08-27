@@ -1,10 +1,10 @@
 'use strict';
 const express = require('express');
-const tourController = require('../controllers/userController');
+const userController = require('../controllers/userController');
 
-const tourRoute = express.Router();
+const userRoute = express.Router();
 
-tourRoute.route('/').get(tourController.getAllTours).post(tourController.createTour);
-tourRoute.route('/:id').get(tourController.getTour).patch(tourController.updateTour).delete(tourController.deleteTour);
+userRoute.route('/').get(userController.getAllUsers).post(userController.createUser);
+userRoute.route('/:id').get(userController.getUser).patch(userController.updateUser).delete(userController.deleteUser);
 
-module.exports = tourRoute;
+module.exports = userRoute;

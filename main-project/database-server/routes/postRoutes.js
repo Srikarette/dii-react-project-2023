@@ -1,10 +1,10 @@
-'use strict';
+// postRoutes.js
 const express = require('express');
-const userController = require('../controllers/postController');
+const postController = require('../controllers/postController');
 
-const userRoute = express.Router();
+const postRoute = express.Router();
 
-userRoute.route('/').get(userController.getAllUsers).post(userController.createUser);
-userRoute.route('/:id').get(userController.getUser).patch(userController.updateUser).delete(userController.deleteUser);
+postRoute.route('/').get(postController.getAllPosts).post(postController.createPost);
+postRoute.route('/:id').get(postController.getPost).patch(postController.updatePost).delete(postController.deletePost);
 
-module.exports = userRoute;
+module.exports = postRoute;
