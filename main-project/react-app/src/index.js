@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import MainContent from "./pages/MainContent";
 import Navbar from "./pages/Navbar";
 import EditProfile from "./pages/EditProfile";
+import PrivacySetting from "./pages/privacySetting";
 import Userself from "./Selfe_userpage/selfUserPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -14,7 +15,8 @@ root.render(
     <div className="mainDisplay">
       <Navbar />
       {/* <MainContent /> */}
-      <EditProfile />
+      {/* <EditProfile /> */}
+      <PrivacySetting />
     </div>
   </React.StrictMode>
 );
