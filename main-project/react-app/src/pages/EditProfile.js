@@ -19,7 +19,7 @@ function EditProfile() {
             {/* <label for="description">Description:</label> */}
             <textarea id="description" name="description" rows="4" ></textarea>
           </div>
-        <button type="submit">Create User</button>
+        <button type="submit">SAVE</button>
           
         </form>
        

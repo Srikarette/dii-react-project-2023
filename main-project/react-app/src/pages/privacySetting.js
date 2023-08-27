@@ -20,7 +20,7 @@ function PrivacySetting() {
           <div className='username-edit'>
             <input type="text" id="passconfirm" name="passconfirm" placeholder='confirm password'></input>
           </div>
-        <button type="submit">Create User</button>
+        <button type="submit">SAVE PASSWORD</button>
           
         </form>
        

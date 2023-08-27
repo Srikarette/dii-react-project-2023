@@ -54,6 +54,7 @@ a{
 .description-edit textarea{
     width: 500px;
     height: 200px;
+    margin-top: 20px;
     resize: none;
 }
 

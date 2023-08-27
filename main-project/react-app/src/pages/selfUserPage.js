@@ -1,6 +1,7 @@
 import './css/selfUser.css';
+import { Link, Route } from 'react-router-dom';
 
-function selfUser(){
+function SelfUser(){
     return (
         <div className="main-content">
         <div className='header'>
@@ -21,7 +22,7 @@ function selfUser(){
     <p className = "username"> UserName </p>
     <p className = "userdescript"> Hello World !!!</p></div>
 
-<button className = "editprofile">Edit Profile</button>
+  <Link to='/user-profile'><button className = "editprofile">Edit Profile</button></Link>
 </div>
 </div>
     
@@ -53,4 +54,4 @@ function selfUser(){
     )
         
 }
-export default selfUser;
+export default SelfUser;

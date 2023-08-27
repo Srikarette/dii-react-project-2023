@@ -16,7 +16,7 @@ function MainContent() {
             <div className='user-information'>
               <button className='profilePic-btn'>Profile</button>
               <div className='username-display'>
-                <p><a href='.....'>example_username</a></p>
+                <p>example_username</p>
               </div>
             </div>
             <div className='post-content'>
@@ -48,7 +48,7 @@ function MainContent() {
             <div className='user-information'>
               <button className='profilePic-btn'>Profile</button>
               <div className='username-display'>
-                <p><a href='.....'>example_username</a></p>
+                <p>example_username</p>
               </div>
             </div>
             <div className='post-content'>

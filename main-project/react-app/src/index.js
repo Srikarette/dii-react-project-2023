@@ -3,21 +3,36 @@ import ReactDOM from "react-dom/client";
 import "./pages/css/index.css";
 import reportWebVitals from "./reportWebVitals";
 
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+
 import MainContent from "./pages/MainContent";
 import Navbar from "./pages/Navbar";
 import EditProfile from "./pages/EditProfile";
 import PrivacySetting from "./pages/privacySetting";
-import Userself from "./Selfe_userpage/selfUserPage";
+import GlobalStyle from "./pages/GlobalStyle"
+import SelfUser from "./pages/selfUserPage";
+// import Userself from "./Selfe_userpage/selfUserPage";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <div className="mainDisplay">
-      <Navbar />
-      {/* <MainContent /> */}
-      {/* <EditProfile /> */}
-      <PrivacySetting />
-    </div>
+    <BrowserRouter>
+      <div className="mainDisplay">
+        <GlobalStyle />
+        <Navbar />
+        {/* <MainContent /> */}
+
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/home" element={<MainContent />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/user-profile" element={<SelfUser />} />
+          <Route path="/privacy-setting" element={<PrivacySetting />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+
   </React.StrictMode>
 );
 
