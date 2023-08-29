@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './css/content.css';
 
 
-function MainContent() {
+function MainContent(user) {
   const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
   const [newPostContent, setNewPostContent] = useState('');
 
   useEffect(() => {
@@ -31,13 +31,38 @@ function MainContent() {
       });
   };
 
+  const handleLike = async (postId) => {
+    try {
+      if (likedPosts.includes(postId)) {
+        // Unlike the post
+        await axios.patch(`/api/v1/posts/${postId}/unlike`);
+        setLikedPosts(likedPosts.filter(id => id !== postId));
+      } else {
+        // Like the post
+        await axios.patch(`/api/v1/posts/${postId}/like`);
+        setLikedPosts([...likedPosts, postId]);
+      }
+      // Fetch the updated posts to refresh the like count
+      const response = await axios.get('/api/v1/posts');
+      setPosts(response.data.data);
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  };
+
+  const handleDelete = (postId) => {
+    axios.delete(`/api/v1/posts/${postId}`)
+      .then(() => {
+        // Remove the deleted post from the posts array
+        setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
+      })
+      .catch(error => {
+        console.error('Error deleting post:', error);
+      });
+  };
+  
   return (
     <div className="main-content">
-      <div className='header'>
-        <button>Discovery</button>
-        <button>Subscribe</button>
-      </div>
-
       <div className='post-container'>
         <div className='post-menu'>
           <div className='post-box'>
@@ -79,7 +104,11 @@ function MainContent() {
               </div>
             </div>
             <div className='post-footer'>
-              <button className='like-btn'>like</button>
+              <button
+                className={`like-btn ${likedPosts.includes(post._id) ? 'liked' : ''}`}
+                onClick={() => handleLike(post._id)}
+                >like
+              </button>
               <p>{post.like}</p>
               <button className='bookmark-btn'>save</button>
             </div>
@@ -99,6 +128,11 @@ function MainContent() {
                 className='cancel-comment-btn'
                 value={'Cancel'}
               />
+              <button 
+                className='delete-post-btn'
+                onClick={() => handleDelete(post._id)}
+                >Delete post
+              </button>
             </div>
           </div>
         ))}

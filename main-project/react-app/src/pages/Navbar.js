@@ -3,14 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 
-function Navbar({className}) {
+function Navbar({className, user}) {
   return (
     <div className={className}>
       <div className="profile">
-        {/* <img className="profilePicture" src="" alt=""></img> */}
         <div className="information">
-          <Link to='user-profile'>Username</Link>
-          <div class="hover-text">
+          <Link to='user-profile'>{user.username}</Link>
+          <div className="hover-text">
             <Link to='edit-profile'>Click to edit profile</Link>
           </div>
         </div>
@@ -56,11 +55,6 @@ export default styled(Navbar)`
     margin: 0;
     padding: 0px;
     font-family: "montserrat",sans-serif;
-}
-
-a{
-    text-decoration: none;
-    color: black;
 }
 
 width: 400px;

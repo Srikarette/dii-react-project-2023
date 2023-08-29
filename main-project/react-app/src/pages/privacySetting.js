@@ -1,13 +1,10 @@
 import './css/profileEdit.css';
+import styled from 'styled-components';
 
 
 function PrivacySetting() {
   return (
     <div className="main-content">
-      <div className='header'>
-        <button>Discovery</button>
-        <button>Subscribe</button>
-      </div>
       
       <div className='form-container'>
         <form>
@@ -30,4 +27,34 @@ function PrivacySetting() {
   );
 }
 
-export default PrivacySetting;
+export default styled(PrivacySetting)`
+
+.form-container{
+    padding: 22px;
+    width: 90%;
+    height: 85%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.username-edit{
+    background-color: blue;
+    margin: 30px 0px 0px 0px;
+}
+
+.username-edit  input{
+    width: 500px;
+    height: 50px;
+}
+.description-edit textarea{
+    width: 500px;
+    height: 200px;
+    margin-top: 20px;
+    resize: none;
+}
+
+
+`;

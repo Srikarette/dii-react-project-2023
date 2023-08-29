@@ -85,3 +85,43 @@ exports.deletePost = async (req, res) => {
     });
   }
 };
+
+exports.likePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { like: 1 } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: post,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'failed',
+      message: err,
+    });
+  }
+};
+
+exports.unlikePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { like: -1 } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: post,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'failed',
+      message: err,
+    });
+  }
+};
