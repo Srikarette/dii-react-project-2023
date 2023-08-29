@@ -14,7 +14,8 @@
 
 .post-container{
     padding: 22px;
-    height: 85%;
+    height: 100%;
+    width: 94%;
     /* background-color: aqua; */
     display: flex;
     align-items: center;
@@ -26,7 +27,7 @@
     margin: 0px 0px 0px 0px;
 }
 .post-slot{
-    width: 980px;
+    width: 680px;
     height: 70px;
     border: none;
 }
@@ -45,7 +46,7 @@
 }
 .post-box{
     padding: 25px;
-    width: 980px;
+    width: 680px;
 
     border: 1px solid black;
 }

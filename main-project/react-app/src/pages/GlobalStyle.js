@@ -12,8 +12,8 @@ a{
 }
 
 .main-content{
-    width: 60%;
-    height: 960px;
+    width: 50%;
+    height: 745px;
     margin: 0px 0px 0px 0px;
     /* background: bisque; */
     border-left: 2px solid black;
