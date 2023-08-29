@@ -1,5 +1,8 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import {Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+
 import MainContent from './pages/MainContent';
 import Container from './pages/Container';
 import Header from './pages/Header';
@@ -15,6 +18,17 @@ function App() {
   const user = { // Replace this with your actual user data
     username: "testuser", // Get the username from your response
   };
+  const [post, setPosts] = useState([]);
+  useEffect(() => {
+    // Fetch all posts when the component mounts
+    axios.get('/api/v1/posts')  // Use the updated backend route
+      .then(response => {
+        setPosts(response.data.data);  
+      })
+      .catch(error => {
+        console.error('Error fetching posts:', error);
+      });
+  }, []);
 
   return (
       <div className="mainDisplay">
@@ -22,13 +36,17 @@ function App() {
         <Navbar user= {user}/>
         <Container>
           <Header />
-          <Routes>
-            <Route path="/" element={<MainContent user={user} />} />
-            <Route path="/home" element={<MainContent user={user} />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
-            <Route path="/user-profile" element={<SelfUser user={user} />} />
-            <Route path="/privacy-setting" element={<PrivacySetting />} />
-          </Routes>
+          {post.length >0 ?(
+             <Routes>
+             <Route path="/" element={<MainContent user={user} />} />
+             <Route path="/home" element={<MainContent user={user} />} />
+             <Route path="/edit-profile" element={<EditProfile />} />
+             <Route path="/user-profile" element={<SelfUser user={user} />} />
+             <Route path="/privacy-setting" element={<PrivacySetting />} />
+           </Routes>
+          ) :(
+            <div>loading post...</div>
+          )}
         </Container>
 
      
