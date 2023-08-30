@@ -139,6 +139,9 @@ a{
   background-color: pink;
   color: white;
 }
+.bookmarked {
+  background-color: yellow; /* Change background color when bookmarked */
+}
 .delete-post-btn{
     width:75px;
     background-color: red;
@@ -150,14 +153,38 @@ a{
 .comment-section{
     margin: 15px 0px 0px 0px;
 }
-
-.comment-slot{
-    width: 100%;
-    height: 70px;
+.comment-list {
+  margin: 0;
+  border: 1px solid black;
+  background-color: lightblue;
+  height: 200px;
+  overflow-y: auto; /* Add this line to make the list scrollable */
 }
-.submit-comment-btn, .cancel-comment-btn{
-    margin: 15px 0px 0px 15px;
-    float: right;
+.post-comment{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 680px;
+}
+.post-comment input{
+    width: 75%;
+    height: 35px;
+}
+.comment {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3px; /* Add some padding to each comment for spacing */
+}
+
+.comment-edit-btn {
+  display: flex;
+  gap: 10px; /* Add some space between the buttons */
+}
+
+.submit-comment-btn, .delete-post-btn{
+    margin: 0px 0px 0px 10px;
     width: 70px;
 }
 

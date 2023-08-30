@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-function MainContent(user) {
+function Bookmark() {
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
-  const [newPostContent, setNewPostContent] = useState('');
   const [newCommentContent, setNewCommentContent] = useState('');
   const [commentsMap, setCommentsMap] = useState({});
   const [editingCommentId, setEditingCommentId] = useState(null);
@@ -39,19 +37,6 @@ function MainContent(user) {
     }
   };
   
-  const handlePostSubmit = () => {
-    // Send a POST request to create a new post
-    axios.post('/api/v1/posts', { content: newPostContent })  
-      .then(response => {
-        // Handle success by updating the posts state
-        setPosts(prevPosts => [...prevPosts, response.data.data]);
-        setNewPostContent(''); // Clear the input field
-      })
-      .catch(error => {
-        console.error('Error creating post:', error);
-      });
-  };
-
   const handleLike = async (postId) => {
     try {
       if (likedPosts.includes(postId)) {
@@ -157,37 +142,13 @@ function MainContent(user) {
     fetchComments();
   }, []);
   
+  const bookmarkedPosts = posts.filter(post => post.isBookMark); // Filter bookmarked posts
   return (
     <div className="main-content">
       <div className='post-container'>
-        <div className='post-menu'>
-          <div className='post-box'>
-            <input
-              type='textarea'
-              placeholder='write something'
-              className='post-slot'
-              value={newPostContent}
-              onChange={e => setNewPostContent(e.target.value)}
-            />
-          </div>
-          <div className='post-section'>
-            <input
-              type='submit'
-              className='submit-post-btn'
-              value='Post'
-              onClick={handlePostSubmit}
-            />
-            <input
-              type='submit'
-              className='cancel-post-btn'
-              value='Cancel'
-            />
-          </div>
-        </div>
-
-        {/* Render fetched posts */}
-        {posts.map(post => (
-          <div key={post._id} className='user-post' id={post._id}>
+        {/* Render bookmarked posts */}
+        {bookmarkedPosts.map(post => (
+            <div key={post._id} className='user-post' id={post._id}>
             <div className='post-box'>
               <div className='user-information'>
                 <button className='profilePic-btn'>Profile</button>
@@ -248,21 +209,22 @@ function MainContent(user) {
                   onClick={() => handleAddComment(post._id)}
                   >Comment
                 </button>
+
+                
                 <button 
                   className='delete-post-btn'
                   onClick={() => handleDelete(post._id)}
                   >Delete post
                 </button>
               </div>
-            
-            
+
             </div>
           </div>
         ))}
-        {/* End of fetched posts */}
+        {/* End of bookmarked posts */}
       </div>
     </div>
   );
 }
 
-export default MainContent;
+export default Bookmark;

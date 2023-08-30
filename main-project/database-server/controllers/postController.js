@@ -125,3 +125,19 @@ exports.unlikePost = async (req, res) => {
     });
   }
 };
+exports.toggleBookmark = async (req, res, next) => {
+  try {
+    const postId = req.params.id;
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    
+    post.isBookMark = !post.isBookMark; // Toggle the bookmark status
+    await post.save();
+    
+    return res.status(200).json({ message: 'Bookmark status toggled', data: post });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error toggling bookmark status', error });
+  }
+};

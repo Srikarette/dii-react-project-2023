@@ -11,6 +11,7 @@ import EditProfile from './pages/EditProfile';
 import PrivacySetting from './pages/privacySetting';
 import SelfUser from './pages/selfUserPage'
 import GlobalStyle from './pages/GlobalStyle';
+import Bookmark from './pages/BookmarkPage';
 
 
 
@@ -40,6 +41,7 @@ function App() {
              <Routes>
              <Route path="/" element={<MainContent user={user} />} />
              <Route path="/home" element={<MainContent user={user} />} />
+             <Route path="/bookmark" element={<Bookmark posts={post} />} />
              <Route path="/edit-profile" element={<EditProfile />} />
              <Route path="/user-profile" element={<SelfUser user={user} />} />
              <Route path="/privacy-setting" element={<PrivacySetting />} />

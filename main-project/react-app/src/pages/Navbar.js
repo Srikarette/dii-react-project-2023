@@ -18,17 +18,19 @@ function Navbar({className, user}) {
       <div className="side-bar">
         <div className="side-bar-content">
           <span class="container2">
-          <Link to='/home'>
-            <div class="text2" data-text="Home">
-              Home
-            </div>
-          </Link>
+            <Link to='/home'>
+              <div class="text2" data-text="Home">
+                Home
+              </div>
+            </Link>
           </span>
 
           <span class="container1">
-            <div class="text1" data-text="Bookmark">
+            <Link to='/bookmark'>
+              <div class="text1" data-text="Bookmark">
               Bookmark
-            </div>
+              </div>
+            </Link>
           </span>
 
           <span class="container1">
