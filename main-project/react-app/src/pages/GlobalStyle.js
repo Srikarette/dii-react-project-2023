@@ -211,7 +211,7 @@ a{
     width: 100%; /* Set the width to 100% to make the image responsive */
     max-width: 730px; /* Limit the maximum width to 500px */
     height: 300px; /* Maintain the aspect ratio */
-    border: 1px solid rgb(223, 23, 23);
+ 
     display: flex;
     flex-direction: row;
 }

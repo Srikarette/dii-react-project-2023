@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import { useUser } from '../UserProvider';
-
+import Image from './images/camt.png';
+import ProfileImg from './images/test.png';
 function SelfUser(){
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
@@ -151,12 +152,12 @@ function SelfUser(){
       <div className='post-container'>
         <div className = "backgroudprofile">
           <div className="backgroudpro_img">
-                
+          <img src={Image} alt="Backgroud Image" />
           </div>
 
           <div className = "content">
             <div className = "profile">
-                {/* <img src="/main-project/react-app/src/pages/images/TestProfilePic.png" alt=""> */}
+            <img src={ProfileImg} alt="profile Image" />
             </div>
 
           <div className="detail">
