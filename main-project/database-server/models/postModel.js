@@ -8,8 +8,6 @@ const postSchema = mongoose.Schema({
     required: [true, 'A user must write content before post'],
   },
   formUser: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
     type: String,
   },
   like:{
