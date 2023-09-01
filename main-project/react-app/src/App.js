@@ -36,16 +36,16 @@ function App() {
   return (
       <div className="mainDisplay">
         <GlobalStyle />
-        <Navbar user= {user}/>
+        <Navbar />
         <Container>
           <Header />
-          {/* <Register /> */}
+          
           {post.length >0 ?(
              <Routes>
               <Route path="/" element={<Register />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<MainContent user={user} />} />
+              <Route path="/feed" element={<MainContent user={user} />} />
               <Route path="/bookmark" element={<Bookmark posts={post} />} />
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/user-profile" element={<SelfUser user={user} />} />

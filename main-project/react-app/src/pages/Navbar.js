@@ -1,14 +1,26 @@
 // import "./css/navbar.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
+import { useUser } from "../UserProvider";
 
-function Navbar({className, user}) {
+function Navbar({className}) {
+  const { user,setUser } = useUser();
+  const navigate = useNavigate();
+
+  
+  const username = user ? user.username : "Guest";
+
+  const handleLogout = () => {
+    // Clear user data and navigate to the login page
+    setUser(null);
+    navigate("/login");
+  };
   return (
     <div className={className}>
       <div className="profile">
         <div className="information">
-          <Link to='user-profile'>{user.username}</Link>
+          <Link to='user-profile'>{username}</Link>
           <div className="hover-text">
             <Link to='edit-profile'>Click to edit profile</Link>
           </div>
@@ -18,7 +30,7 @@ function Navbar({className, user}) {
       <div className="side-bar">
         <div className="side-bar-content">
           <span class="container2">
-            <Link to='/home'>
+            <Link to='/feed'>
               <div class="text2" data-text="Home">
                 Home
               </div>
@@ -40,6 +52,15 @@ function Navbar({className, user}) {
             </div>
           </Link>  
           </span>
+
+          
+          {user ? (
+            <span class="container1" onClick={handleLogout}>
+              <div class="text1" data-text="Log out">
+                Log out
+              </div>
+            </span>
+          ) : null}
         </div>
 
         <div className="side-post-btn">

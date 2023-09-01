@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import './css/login.css'
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../UserProvider";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); // Rename history to navigate
+  const navigate = useNavigate(); 
+
+  const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +26,8 @@ function Login() {
       if (response.ok) {
         // Login was successful, you can redirect to the home page
         console.log('Login success!')
-        navigate('/home'); // Use navigate to change the route
+        setUser({ username });
+        navigate('/feed'); // Use navigate to change the route
       } else {
         // Login failed, handle the error (e.g., display an error message)
         setErrorMessage('Invalid username or password');
