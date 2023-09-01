@@ -39,15 +39,17 @@ function App() {
         <Navbar user= {user}/>
         <Container>
           <Header />
-          {/* <Login /> */}
+          {/* <Register /> */}
           {post.length >0 ?(
              <Routes>
-             <Route path="/" element={<MainContent user={user} />} />
-             <Route path="/home" element={<MainContent user={user} />} />
-             <Route path="/bookmark" element={<Bookmark posts={post} />} />
-             <Route path="/edit-profile" element={<EditProfile />} />
-             <Route path="/user-profile" element={<SelfUser user={user} />} />
-             <Route path="/privacy-setting" element={<PrivacySetting />} />
+              <Route path="/" element={<Register />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/home" element={<MainContent user={user} />} />
+              <Route path="/bookmark" element={<Bookmark posts={post} />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+              <Route path="/user-profile" element={<SelfUser user={user} />} />
+              <Route path="/privacy-setting" element={<PrivacySetting />} />
            </Routes>
           ) :(
             <div>loading post...</div>
