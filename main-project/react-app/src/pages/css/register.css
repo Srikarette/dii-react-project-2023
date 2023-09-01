@@ -16,7 +16,7 @@
 }
 /*พื้นหลัง */
 .wrapper {
-    background-image: url('test.png'); 
+    background-image: url('../css/register.css'); 
     background-size: cover;
     background-position: center;
 }

@@ -12,6 +12,8 @@ import PrivacySetting from './pages/privacySetting';
 import SelfUser from './pages/selfUserPage'
 import GlobalStyle from './pages/GlobalStyle';
 import Bookmark from './pages/BookmarkPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 
 

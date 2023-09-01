@@ -5,7 +5,6 @@ import styled from 'styled-components';
 function PrivacySetting() {
   return (
     <div className="main-content">
-      
       <div className='form-container'>
         <form>
           <div className='username-edit'>
