@@ -13,8 +13,7 @@ function MainContent(user) {
   
 
   useEffect(() => {
-    // Fetch all posts when the component mounts
-    axios.get('/api/v1/posts')  // Use the updated backend route
+    axios.get('/api/v1/posts')  
       .then(response => {
         setPosts(response.data.data);  
       })

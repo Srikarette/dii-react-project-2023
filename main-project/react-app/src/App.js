@@ -39,6 +39,7 @@ function App() {
         <Navbar user= {user}/>
         <Container>
           <Header />
+          {/* <Login /> */}
           {post.length >0 ?(
              <Routes>
              <Route path="/" element={<MainContent user={user} />} />
