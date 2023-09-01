@@ -1,14 +1,12 @@
-// import "./css/navbar.css";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components"
+import styled from "styled-components";
 import { useUser } from "../UserProvider";
 
-function Navbar({className}) {
-  const { user,setUser } = useUser();
+function Navbar({ className }) {
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
-  
   const username = user ? user.username : "Guest";
 
   const handleLogout = () => {
@@ -16,57 +14,64 @@ function Navbar({className}) {
     setUser(null);
     navigate("/login");
   };
+
   return (
     <div className={className}>
-      <div className="profile">
-        <div className="information">
-          <Link to='user-profile'>{username}</Link>
-          <div className="hover-text">
-            <Link to='edit-profile'>Click to edit profile</Link>
+      {user ? (
+        <div className="profile">
+          <div className="information">
+            <Link to="/user-profile">{username}</Link>
+            <div className="hover-text">
+              <Link to="/edit-profile">Click to edit profile</Link>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       <div className="side-bar">
         <div className="side-bar-content">
           <span class="container2">
-            <Link to='/feed'>
+            <Link to="/feed">
               <div class="text2" data-text="Home">
                 Home
               </div>
             </Link>
           </span>
 
-          <span class="container1">
-            <Link to='/bookmark'>
-              <div class="text1" data-text="Bookmark">
-              Bookmark
-              </div>
-            </Link>
-          </span>
-
-          <span class="container1">
-          <Link to='/privacy-setting'>
-            <div class="text1" data-text="Privacy">
-             Privacy
-            </div>
-          </Link>  
-          </span>
-
-          
           {user ? (
-            <span class="container1" onClick={handleLogout}>
-              <div class="text1" data-text="Log out">
-                Log out
-              </div>
-            </span>
-          ) : null}
-        </div>
+            <>
+              <span class="container1">
+                <Link to="/bookmark">
+                  <div class="text1" data-text="Bookmark">
+                    Bookmark
+                  </div>
+                </Link>
+              </span>
 
-        <div className="side-post-btn">
-        <Link to='/home'>
-          <button className="post-btn">Post</button>
-        </Link>
+              <span class="container1">
+                <Link to="/privacy-setting">
+                  <div class="text1" data-text="Privacy">
+                    Privacy
+                  </div>
+                </Link>
+              </span>
+
+              <span class="container1" onClick={handleLogout}>
+                <div class="text1" data-text="Log out">
+                  Log out
+                </div>
+              </span>
+            </>
+          ) : (
+            // Render "Log in" link only when user is not logged in
+            <span class="container1">
+              <Link to="/login">
+                <div class="text1" data-text="Log in">
+                  Log in
+                </div>
+              </Link>
+            </span>
+          )}
         </div>
       </div>
     </div>

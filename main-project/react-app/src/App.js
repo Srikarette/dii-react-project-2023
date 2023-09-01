@@ -45,7 +45,7 @@ function App() {
               <Route path="/" element={<Register />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/feed" element={<MainContent user={user} />} />
+              <Route path="/feed" element={<MainContent />} />
               <Route path="/bookmark" element={<Bookmark posts={post} />} />
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/user-profile" element={<SelfUser user={user} />} />

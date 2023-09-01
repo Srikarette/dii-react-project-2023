@@ -8,11 +8,12 @@ const postSchema = mongoose.Schema({
     required: [true, 'A user must write content before post'],
   },
   formUser: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', 
   },
   like:{
     type: Number,
-    default: 0,
+    default: 0, 
   },
   postDate: {
     type: Date,

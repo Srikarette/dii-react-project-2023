@@ -77,6 +77,11 @@ a{
 .post-menu{
     margin: 0px 0px 0px 0px;
 }
+.serach-slot{
+    width: 99.5%;
+    height: 35px;
+    margin: 0px 0px 25px 0px;
+}
 .post-slot{
     width: 680px;
     height: 50px;

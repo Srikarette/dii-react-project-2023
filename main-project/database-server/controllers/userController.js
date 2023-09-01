@@ -101,3 +101,28 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+
+exports.updatePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const user = await User.findById(req.user.id); // Assuming you have user authentication middleware
+
+    // Check if the old password matches the current password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ status: 'error', message: 'Old password is incorrect' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password in the database
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ status: 'success', message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Password update error:', error);
+    res.status(500).json({ status: 'error', message: 'An error occurred while updating the password' });
+  }
+};
