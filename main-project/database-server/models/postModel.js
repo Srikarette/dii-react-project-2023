@@ -9,12 +9,11 @@ const postSchema = mongoose.Schema({
   },
   formUser: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    type: String,
+    ref: 'User', 
   },
   like:{
     type: Number,
-    default: 0,
+    default: 0, 
   },
   postDate: {
     type: Date,

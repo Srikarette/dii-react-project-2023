@@ -12,6 +12,8 @@ import PrivacySetting from './pages/privacySetting';
 import SelfUser from './pages/selfUserPage'
 import GlobalStyle from './pages/GlobalStyle';
 import Bookmark from './pages/BookmarkPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 
 
@@ -34,17 +36,20 @@ function App() {
   return (
       <div className="mainDisplay">
         <GlobalStyle />
-        <Navbar user= {user}/>
+        <Navbar />
         <Container>
           <Header />
+          
           {post.length >0 ?(
              <Routes>
-             <Route path="/" element={<MainContent user={user} />} />
-             <Route path="/home" element={<MainContent user={user} />} />
-             <Route path="/bookmark" element={<Bookmark posts={post} />} />
-             <Route path="/edit-profile" element={<EditProfile />} />
-             <Route path="/user-profile" element={<SelfUser user={user} />} />
-             <Route path="/privacy-setting" element={<PrivacySetting />} />
+              <Route path="/" element={<Register />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/feed" element={<MainContent />} />
+              <Route path="/bookmark" element={<Bookmark posts={post} />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+              <Route path="/user-profile" element={<SelfUser user={user} />} />
+              <Route path="/privacy-setting" element={<PrivacySetting />} />
            </Routes>
           ) :(
             <div>loading post...</div>

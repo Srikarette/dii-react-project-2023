@@ -148,80 +148,87 @@ function Bookmark() {
       <div className='post-container'>
         {/* Render bookmarked posts */}
         {bookmarkedPosts.map(post => (
-            <div key={post._id} className='user-post' id={post._id}>
-            <div className='post-box'>
-              <div className='user-information'>
-                <button className='profilePic-btn'>Profile</button>
-                <div className='username-display'>
-                  <p>{post.formUser}</p>
-                </div>
-              </div>
-              <div className='post-content'>
-                <p>{post.content}</p>
-              </div>
-            </div>
-            <div className='post-footer'>
-              <button
-                className={`like-btn ${likedPosts.includes(post._id) ? 'liked' : ''}`}
-                onClick={() => handleLike(post._id)}
-                >like
-              </button>
-              <p>{post.like}</p>
-              <button
-                className={`bookmark-btn ${post.isBookMark ? 'bookmarked' : ''}`}
-                onClick={() => handleBookmark(post._id)}
-                >{post.isBookMark ? 'save' : 'save'}
-              </button>
-            </div>
-            <div className='comment-section'>
-              <div className='comment-list'>
-                {commentsMap[post._id] && commentsMap[post._id].map(comment => (
-                  <div key={comment._id} className='comment'>
-                    <p>{comment.content}</p>
-                    {editingCommentId === comment._id ? (
-                    <div>
-                    <input
-                      type='text'
-                      value={editedCommentContent}
-                      onChange={(e) => setEditedCommentContent(e.target.value)}
-                    />
-                    <button onClick={() => handleSaveEditedComment(comment._id)}>Save</button>
-                      </div>
-                      ) : (
-                      <div className='comment-edit-btn'>
-                      <button onClick={() => handleEditComment(post._id, comment._id)}>Edit</button>
-                      <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-                    </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+ <div key={post._id} className='user-post' id={post._id}>
+ <div className='post-box'>
+   <div className='user-information'>
+     <button className='profilePic-btn'>Profile</button>
+     <div className='username-display'>
+       {/* Display the username of the user who created the post */}
 
-              <div className='post-comment'>
-                <input
-                  type='text'
-                  placeholder='write comment'
-                  value={newCommentContent}
-                  onChange={e => setNewCommentContent(e.target.value)}
-                />
-                <button 
-                  className='submit-comment-btn'
-                  onClick={() => handleAddComment(post._id)}
-                  >Comment
-                </button>
+       {/* {console.log('Post:', post)}
+       {console.log('formUser:', post.formUser)}
+       {console.log('Username:', post.formUser ? post.formUser.username : 'Anonymous')} */}
+       
+       <p>{post.formUser ? post.formUser.username : 'Anonymous'}</p>
+     </div>
+   </div>
+   <div className='post-content'>
+     <p>{post.content}</p>
+   </div>
+ </div>
+ <div className='post-footer'>
+   <button
+     className={`like-btn ${likedPosts.includes(post._id) ? 'liked' : ''}`}
+     onClick={() => handleLike(post._id)}
+   >
+     like
+   </button>
+   <p>{post.like}</p>
+   <button
+     className={`bookmark-btn ${post.isBookMark ? 'bookmarked' : ''}`}
+     onClick={() => handleBookmark(post._id)}
+   >
+     {post.isBookMark ? 'save' : 'save'}
+   </button>
+ </div>
+ <div className='comment-section'>
+   <div className='comment-list'>
+     {commentsMap[post._id] && commentsMap[post._id].map(comment => (
+       <div key={comment._id} className='comment'>
+         <p>{comment.content}</p>
+         {editingCommentId === comment._id ? (
+           <div>
+             <input
+               type='text'
+               value={editedCommentContent}
+               onChange={(e) => setEditedCommentContent(e.target.value)}
+             />
+             <button onClick={() => handleSaveEditedComment(comment._id)}>Save</button>
+           </div>
+         ) : (
+           <div className='comment-edit-btn'>
+             <button onClick={() => handleEditComment(post._id, comment._id)}>Edit</button>
+             <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+           </div>
+         )}
+       </div>
+     ))}
+   </div>
 
-                
-                <button 
-                  className='delete-post-btn'
-                  onClick={() => handleDelete(post._id)}
-                  >Delete post
-                </button>
-              </div>
-
-            </div>
-          </div>
-        ))}
-        {/* End of bookmarked posts */}
+   <div className='post-comment'>
+     <input
+       type='text'
+       placeholder='write comment'
+       value={newCommentContent}
+       onChange={e => setNewCommentContent(e.target.value)}
+     />
+     <button
+       className='submit-comment-btn'
+       onClick={() => handleAddComment(post._id)}
+     >
+       Comment
+     </button>
+     <button
+       className='delete-post-btn'
+       onClick={() => handleDelete(post._id)}
+     >
+       Delete post
+     </button>
+   </div>
+ </div>
+</div>
+))}
+{/* End of fetched posts */}
       </div>
     </div>
   );

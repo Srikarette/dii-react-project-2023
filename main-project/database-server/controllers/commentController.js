@@ -97,5 +97,3 @@ exports.deleteComment = async (req, res, next) => {
     });
   }
 };
-
-// Other comment controller methods (updateComment) can be implemented similarly

@@ -2,16 +2,14 @@
 
 const mongoose = require('mongoose');
 
-const toursSchema = mongoose.Schema({
+const usersSchema = mongoose.Schema({
   username: {
     type: String,
     required: [true, 'A user must have a username'],
-    unique: true,
   },
   password: {
     type: String, // Change the type to String
     required: [true, 'A user must have a password'],
-    default: '0', // Set the default as a string value, e.g., '0'
   },
   profileDescription: {
     type: String,
@@ -32,6 +30,6 @@ const toursSchema = mongoose.Schema({
   },
 });
 
-const User = mongoose.model('User', toursSchema);
+const User = mongoose.model('User', usersSchema);
 
 module.exports = User;
