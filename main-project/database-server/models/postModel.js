@@ -7,7 +7,7 @@ const postSchema = mongoose.Schema({
     type: String,
     required: [true, 'A user must write content before post'],
   },
-  formUser: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', 
   },

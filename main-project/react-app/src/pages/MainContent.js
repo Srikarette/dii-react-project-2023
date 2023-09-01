@@ -47,6 +47,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
     return postContent.includes(searchTerm.toLowerCase());
   });
 
+  
   const handlePostSubmit = () => {
     // Send a POST request to create a new post
     axios.post('/api/v1/posts', { content: newPostContent })
@@ -61,7 +62,6 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   };
 
   const handleEditPost = (postId) => {
-    // Set the post content to be edited
     const post = posts.find((post) => post._id === postId);
     if (post) {
       setEditingPostId(postId);
@@ -118,27 +118,27 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const handleAddComment = async (postId) => {
     try {
       // Send a POST request to add a new comment to the post
-      await axios.post(`/api/v1/comments`, {
+      const response = await axios.post(`/api/v1/comments`, {
         postId: postId,
         content: newCommentContent,
       });
-      // Refresh the posts to update the comments
-      const response = await axios.get('/api/v1/posts');
-      setPosts(response.data.data);
-
-      // Update the comments map with a conditional check
-      const newCommentsMap = { ...commentsMap };
-      if (!newCommentsMap[postId]) {
-        newCommentsMap[postId] = [];
+  
+      // Update the comments map with the new comment
+      const updatedCommentsMap = { ...commentsMap };
+      if (!updatedCommentsMap[postId]) {
+        updatedCommentsMap[postId] = [];
       }
-      newCommentsMap[postId].push(response.data.data);
-      setCommentsMap(newCommentsMap);
-
-      setNewCommentContent(''); // Clear the input field
+      updatedCommentsMap[postId].push(response.data.data);
+      setCommentsMap(updatedCommentsMap);
+  
+      // Clear the input field
+      setNewCommentContent('');
     } catch (error) {
       console.error('Error adding comment:', error);
     }
   };
+  
+  
 
   const handleEditComment = (postId, commentId) => {
     // Open the modal for editing
@@ -167,7 +167,6 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const handleDeleteComment = async (commentId) => {
     try {
       await axios.delete(`/api/v1/comments/${commentId}`);
-      // After successfully deleting the comment, fetch the updated comments
       fetchComments();
     } catch (error) {
       console.error('Error deleting comment:', error);
@@ -177,7 +176,6 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const handleDelete = (postId) => {
     axios.delete(`/api/v1/posts/${postId}`)
       .then(() => {
-        // Remove the deleted post from the posts array
         setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
       })
       .catch(error => {
@@ -235,7 +233,9 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
                 <button className='profilePic-btn'>Profile</button>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
-                  {post.formUser ? post.formUser.username : 'Anonymous'}
+                  {console.log('formUser:', post.userId)}
+                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')}
+                  {post.userId ? post.userId.username : 'Anonymous'}
                 </div>
               </div>
               <div className='post-content'>
