@@ -86,7 +86,19 @@ function Navbar({ className }) {
 }
 
 export default styled(Navbar)`
-  #link {
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:active {
     text-decoration: none;
   }
   * {
@@ -137,6 +149,7 @@ export default styled(Navbar)`
     flex-wrap: wrap;
     flex-direction: column;
     /* border-top: 2px solid rgba(0, 0, 0, 0.5);  */
+    text-decoration: none;
   }
   .side-bar-content p {
     margin-top: 25px;
@@ -144,6 +157,7 @@ export default styled(Navbar)`
     /* border: 2px solid black; */
     font-size: 25px;
     /* padding: 10px; */
+    text-decoration: none;
   }
 
   .post-btn {
@@ -213,7 +227,7 @@ export default styled(Navbar)`
     background: rgba(37, 95, 156, 0.937);
     right: 0;
     top: 0;
-    transition: 0.4s;
+    transition: 0.3s;
     text-decoration: none;
   }
 
@@ -238,7 +252,6 @@ export default styled(Navbar)`
     font-weight: 900;
     position: relative;
     color: rgba(37, 95, 156, 0.937);
-    text-decoration: none;
   }
 
   .text2::before {
@@ -247,7 +260,7 @@ export default styled(Navbar)`
     color: #fff;
     width: 0;
     overflow: hidden;
-    transition: 0.4s;
+    transition: 0.3s;
     text-decoration: none;
   }
 
@@ -259,13 +272,16 @@ export default styled(Navbar)`
     background: rgba(37, 95, 156, 0.937);
     right: 0;
     top: 0;
-    transition: 0.4s;
+    transition: 0.3s;
     text-decoration: none;
   }
 
   .container2:hover .text2::before,
   .container2:hover::before {
     width: 100%;
-    text-decoration: none;
+    /* text-decoration: none; */
+  }
+  .container2:hover {
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.3);
   }
 `;

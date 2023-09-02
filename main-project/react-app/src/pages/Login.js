@@ -25,14 +25,14 @@ function Login() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        const { username, userId } = data;
-        console.log('Success Login to:', username); 
-        console.log('Response data:', data); 
+        // const data = await response.json();
+        // const { username, userId } = data;
+        // console.log('Success Login to:', username);
+        // console.log('Response data:', data);
 
-        setUser({ username, userId });
-
-        navigate('/feed'); 
+        // setUser({ username, userId });
+        setUser({ username });
+        navigate("/feed");
       } else {
         // Login failed, handle the error (e.g., display an error message)
         setErrorMessage("Invalid username or password");

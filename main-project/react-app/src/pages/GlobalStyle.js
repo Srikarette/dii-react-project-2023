@@ -21,15 +21,17 @@ code {
 *{
     margin: 0;
     padding: 0px;
-    text-decoration: none;
 }
+a:link { text-decoration: none; }
 
-a{
-    text-decoration: none;
-}
-#link{
-    text-decoration: none;
-}
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
 
 .mainDisplay{
   margin: 0px 0px 0px 0px;
