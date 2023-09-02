@@ -3,7 +3,6 @@ import axios from "axios";
 import { useUser } from "../UserProvider";
 
 function MainContent() {
-  // Pass the 'user' prop to access the logged-in user
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
   const [newPostContent, setNewPostContent] = useState("");
