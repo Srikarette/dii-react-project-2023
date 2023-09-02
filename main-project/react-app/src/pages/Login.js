@@ -1,9 +1,9 @@
-import{React, useState } from "react";
+import { React, useState } from "react";
 // import "./css/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loginSuccess,logout } from "./redux/authAction";
+import { loginSuccess, logout } from "./redux/authAction";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -27,14 +27,14 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Response data:', data);
-      
-        const { user } = data; 
-        const { username, _id: userId } = user; 
-      
-        console.log('Extracted username:', username);
-        console.log('Extracted userId:', userId);
-      
+        console.log("Response data:", data);
+
+        const { user } = data;
+        const { username, _id: userId } = user;
+
+        console.log("Extracted username:", username);
+        console.log("Extracted userId:", userId);
+
         dispatch(loginSuccess({ username, userId }));
         navigate("/feed");
       } else {
@@ -46,7 +46,6 @@ function Login() {
     }
   };
 
-
   return (
     <div className="container main">
       <div className="row">
@@ -55,7 +54,7 @@ function Login() {
             <header>Login account</header>
             {errorMessage && (
               <div className="error-message">
-                <span style={{ color: "red" }}>{errorMessage}</span>
+                <span style={{ color: "red", margin: 20 }}>{errorMessage}</span>
               </div>
             )}
             <form onSubmit={handleSubmit}>

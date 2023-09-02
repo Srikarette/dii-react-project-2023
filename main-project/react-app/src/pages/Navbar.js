@@ -3,14 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/authAction";
-import ProfileImg from './images/woman.png';
+import ProfileImg from "./images/woman.png";
+import logo from "./images/test.png";
+import home from "./images/homeie.png";
+import bookmark from "./images/bookmark.png";
+import pvc from "./images/locked.png";
+import logou from "./images/export.png";
+import logii from "./images/user.png";
 function Navbar({ className }) {
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const username = user ? user.username : "Guest";
-
 
   console.log(username);
 
@@ -24,27 +29,24 @@ function Navbar({ className }) {
     <div className={className}>
       {user ? (
         <>
-          
           <div className="profileNav">
-         
-          <img src={ProfileImg}></img>
-          
-        
-          <span className="information">
-            <Link to="/user-profile">{username}</Link>
-            <div className="hover-text">
-              <Link to="/edit-profile">Click to edit profile</Link>
-            </div>
-          </span>
+            <img src={ProfileImg}></img>
+
+            <span className="information">
+              <Link to="/user-profile">{username}</Link>
+              <div className="hover-text">
+                <Link to="/edit-profile">Click to edit profile</Link>
+              </div>
+            </span>
           </div>
         </>
       ) : null}
-
       <div className="side-bar">
         <div className="side-bar-content">
           <span className="container2">
             <Link to="/feed">
               <div className="text2" data-text="Home">
+                <img className="logo_home" src={home}></img>
                 Home
               </div>
             </Link>
@@ -55,6 +57,7 @@ function Navbar({ className }) {
               <span className="container2">
                 <Link to="/bookmark">
                   <div className="text2" data-text="Bookmark">
+                    <img className="logo_bookmark" src={bookmark}></img>
                     Bookmark
                   </div>
                 </Link>
@@ -63,22 +66,25 @@ function Navbar({ className }) {
               <span className="container2">
                 <Link to="/privacy-setting">
                   <div className="text2" data-text="Privacy">
+                    <img className="logo_pvc" src={pvc}></img>
                     Privacy
                   </div>
                 </Link>
               </span>
 
               <span className="container2" onClick={handleLogout}>
-                <div className="text2" data-text="Log out">
-                  Log out
+                <div className="text2" data-text="Logout">
+                  <img className="logo_logout" src={logou}></img>
+                  Logout
                 </div>
               </span>
             </>
           ) : (
             <span className="container2">
               <Link to="/login">
-                <div className="text2" data-text="Log in">
-                  Log in
+                <div className="text2" data-text="Login">
+                  <img className="logo_login" src={logii}></img>
+                  Login
                 </div>
               </Link>
             </span>
@@ -139,7 +145,7 @@ export default styled(Navbar)`
   }
   .information {
     position: absolute;
-    margin: 40px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     width: auto;
     font-size: 30px;
     /* color: #40916c; */
@@ -148,6 +154,19 @@ export default styled(Navbar)`
     z-index: 10;
   }
 
+  .profile_img img {
+    width: 100px;
+    height: 100px;
+  }
+  .profileNav img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  .profileNav {
+    margin-top: 20px;
+    margin-left: 30px;
+  }
   .side-bar {
     /* display: flex; */
     flex-wrap: wrap;
@@ -287,5 +306,84 @@ export default styled(Navbar)`
   }
   .container2:hover {
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 6%;
+    margin-top: 32%;
+    position: absolute;
+  }
+  .logo_home {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    padding: 2px;
+    margin-left: 250px;
+    transition: all 0.2s;
+    border-radius: 50%;
+  }
+  .logo_home:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo_bookmark {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    padding: 2px;
+    margin-left: 250px;
+    transition: all 0.2s;
+    border-radius: 50%;
+  }
+  .logo_bookmark:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo_pvc {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    margin-left: 250px;
+    transition: all 0.2s;
+    padding: 1px;
+    border-radius: 70%;
+  }
+  .logo_pvc:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo_pvc {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    margin-left: 250px;
+    transition: all 0.2s;
+    border-radius: 70%;
+  }
+  .logo_pvc:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo_logout {
+    width: 45px;
+    height: 45px;
+    padding: 1px;
+    position: absolute;
+    margin-left: 250px;
+    transition: all 0.2s;
+    border-radius: 70%;
+  }
+  .logo_logout:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  }
+  .logo_login {
+    width: 45px;
+    height: 45px;
+    padding: 1px;
+    position: absolute;
+    margin-left: 250px;
+    transition: all 0.2s;
+    border-radius: 70%;
+  }
+  .logo_login:hover {
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
   }
 `;

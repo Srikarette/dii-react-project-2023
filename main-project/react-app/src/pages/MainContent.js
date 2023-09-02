@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import ProfileImg from './images/woman.png';
-import {useSelector} from "react-redux";
+import ProfileImg from "./images/woman.png";
+import { useSelector } from "react-redux";
 function MainContent() {
   const user = useSelector((state) => state.users.user);
   // Access Redux state
   const [posts, setPosts] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
   const [likedPosts, setLikedPosts] = useState([]);
-  
-   // Component state
-   const [newPostContent, setNewPostContent] = useState("");
-   const [newCommentContent, setNewCommentContent] = useState("");
-   const [editingCommentId, setEditingCommentId] = useState(null);
-   const [editedCommentContent, setEditedCommentContent] = useState("");
-   const [editingPostId, setEditingPostId] = useState(null);
-   const [editedPostContent, setEditedPostContent] = useState("");
-   const [searchTerm, setSearchTerm] = useState(""); 
 
- 
-   const filteredPosts = posts.filter((post) => {
-     const postContent = post.content.toLowerCase();
-     return postContent.includes(searchTerm.toLowerCase());
-   });
-  
+  // Component state
+  const [newPostContent, setNewPostContent] = useState("");
+  const [newCommentContent, setNewCommentContent] = useState("");
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [editedCommentContent, setEditedCommentContent] = useState("");
+  const [editingPostId, setEditingPostId] = useState(null);
+  const [editedPostContent, setEditedPostContent] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPosts = posts.filter((post) => {
+    const postContent = post.content.toLowerCase();
+    return postContent.includes(searchTerm.toLowerCase());
+  });
 
   useEffect(() => {
     axios
@@ -56,13 +54,13 @@ function MainContent() {
   const handlePostSubmit = () => {
     if (user) {
       const userId = user._id;
-      console.log('User:', user);
-      console.log('UserId:', user._id);
-  
+      console.log("User:", user);
+      console.log("UserId:", user._id);
+
       axios
         .post("/api/v1/posts", {
           content: newPostContent,
-          userId: userId, 
+          userId: userId,
         })
         .then((response) => {
           // Handle success by updating the posts state
@@ -251,8 +249,7 @@ function MainContent() {
           <div key={post._id} className="user-post" id={post._id}>
             <div className="post-box">
               <div className="user-information">
-           
-              <div className="profilePic">
+                <div className="profilePic">
                   <img src={ProfileImg}></img>
                 </div>
                 <div className="username-display">
@@ -288,7 +285,7 @@ function MainContent() {
                     }`}
                     onClick={() => handleLike(post._id)}
                   >
-                    like
+                    Like
                   </button>
                   <p>{post.like}</p>
                   <button

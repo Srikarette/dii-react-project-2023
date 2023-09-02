@@ -181,15 +181,28 @@ a:active { text-decoration: none; }
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    /* border: none; */
+    border: none;
+    transition: 0.1s;
+    cursor: pointer;
+    color:#6c757d;
+}
+.post-footer button:hover{
+}
+.bookmark-btn:hover{
+    background-color: #fff2b2;
+}
+.like-btn:hover{
+    background-color: #ffccd5;
 }
 
 .like-btn.liked {
-  background-color: pink;
+  background-color: #ff758f;
   color: white;
+  color:#fff;
 }
 .bookmarked {
-  background-color: yellow; /* Change background color when bookmarked */
+  background-color: #ffd400; /* Change background color when bookmarked */
+  color:#fff;
 }
 .delete-post-btn{
     width:75px;
@@ -206,9 +219,9 @@ a:active { text-decoration: none; }
   margin-bottom: 10px;
   /* border: 1px solid black; */
   /* background-color: lightblue; */
-  height: 70px;
+  height: 60px;
   overflow-y: auto; /* Add this line to make the list scrollable */
-  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
   padding:10px;
 
 }
@@ -302,21 +315,10 @@ margin-right:20px;
   cursor: pointer;
   border: none;
 }
-.profile_img img{
-    width: 100px ;
-    height: 100px ;
-}
-.profileNav img{
-width: 100px ;
-height: 100px ;
-margin-right : 20px ;
-}
-.profileNav {
-    margin-top : 20px ;
-    margin-left : 30px ;
-  
-}
+
 /////////////////////This come form self user part///////////////////////////////
+
+
 
 .profile_img {
     display: flex ;
@@ -398,6 +400,9 @@ margin-right : 20px ;
 .username-edit  input{
     width: 500px;
     height: 50px;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
+    border:none;
+    padding-left: 10px;
 }
 .description-edit textarea{
     width: 500px;
