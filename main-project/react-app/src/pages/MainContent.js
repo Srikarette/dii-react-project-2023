@@ -233,7 +233,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
                 <button className='profilePic-btn'>Profile</button>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
-                  {console.log('formUser:', post.userId)}
+                  {console.log('userID:', post.userId)}
                   {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')}
                   {post.userId ? post.userId.username : 'Anonymous'}
                 </div>
