@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from "react";
-import './css/register.css';
 import { Link,useNavigate } from "react-router-dom";
 
 function Register() {
