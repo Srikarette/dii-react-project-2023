@@ -53,7 +53,6 @@ const handlePostSubmit = () => {
   const userId = user._id; 
   console.log(userId);
 
-  // Send a POST request to create a new post with the user's _id
   axios.post('/api/v1/posts', {
     content: newPostContent,
     userId: userId, // Include the user's _id in the request body
@@ -247,8 +246,8 @@ const handlePostSubmit = () => {
                 <button className='profilePic-btn'>Profile</button>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
-                  {/* {console.log('userID:', post.userId)}
-                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')} */}
+                  {console.log('userID:', post.userId)} 
+                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')}
                   {post.userId ? post.userId.username : 'Anonymous'}
                 </div>
               </div>
