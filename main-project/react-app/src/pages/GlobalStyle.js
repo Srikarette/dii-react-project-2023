@@ -150,8 +150,8 @@ a:active { text-decoration: none; }
 .user-information{
     display: flex;
 }
-.profilePic-btn{
-    background-color: rgba(37, 95, 156, 0.6);
+.profilePic img{
+
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -302,9 +302,26 @@ margin-right:20px;
   cursor: pointer;
   border: none;
 }
-
+.profile_img img{
+    width: 100px ;
+    height: 100px ;
+}
+.profileNav img{
+width: 100px ;
+height: 100px ;
+margin-right : 20px ;
+}
+.profileNav {
+    margin-top : 20px ;
+    margin-left : 30px ;
+  
+}
 /////////////////////This come form self user part///////////////////////////////
 
+.profile_img {
+    display: flex ;
+    flex-direction : row ;
+}
 .backgroudprofile {
     width:730px;
     margin-top: 20px;

@@ -11,10 +11,7 @@ function EditProfile(className) {
             {/* <label for="username">Username:</label> */}
             <input type="text" id="username" name="username" placeholder='Enter new username'></input>
           </div>
-          <div className='description-edit'>
-            {/* <label for="description">Description:</label> */}
-            <textarea id="description" name="description" rows="4" ></textarea>
-          </div>
+       
         <button type="submit">SAVE</button>
           
         </form>

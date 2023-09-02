@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import { useUser } from "../UserProvider";
-
+import ProfileImg from './images/woman.png';
 function MainContent() {
   const { user } = useUser();
 
@@ -248,7 +248,10 @@ function MainContent() {
           <div key={post._id} className="user-post" id={post._id}>
             <div className="post-box">
               <div className="user-information">
-                <button className="profilePic-btn">Profile</button>
+           
+              <div className="profilePic">
+                  <img src={ProfileImg}></img>
+                </div>
                 <div className="username-display">
                   {/* Display the username of the user who created the post */}
                   {/* {console.log('userID:', post.userId)}  */}

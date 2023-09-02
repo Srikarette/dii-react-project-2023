@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useUser } from "../UserProvider";
-
+import ProfileImg from './images/woman.png';
 function Navbar({ className }) {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
@@ -26,13 +26,19 @@ function Navbar({ className }) {
     <div className={className}>
       {user ? (
         <>
-          <span className="profile"></span>
+          
+          <div className="profileNav">
+         
+          <img src={ProfileImg}></img>
+          
+        
           <span className="information">
             <Link to="/user-profile">{username}</Link>
             <div className="hover-text">
               <Link to="/edit-profile">Click to edit profile</Link>
             </div>
           </span>
+          </div>
         </>
       ) : null}
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect,useState } from 'react';
 import { useUser } from '../UserProvider';
 import Image from './images/camt.png';
-import ProfileImg from './images/test.png';
+import ProfileImg from './images/woman.png';
 function SelfUser(){
   const { user } = useUser();
   // console.log('User:', user);
@@ -202,7 +202,9 @@ function SelfUser(){
         <div key={post._id} className='user-post' id={post._id}>
           <div className='post-box'>
             <div className='user-information'>
-              <button className='profilePic-btn'>Profile</button>
+            <div className="profilePic">
+                  <img src={ProfileImg}></img>
+                </div>
               <div className='username-display'>
                 {/* Display the username of the user who created the post */}
                 {/* {console.log('userID:', post.userId)}
