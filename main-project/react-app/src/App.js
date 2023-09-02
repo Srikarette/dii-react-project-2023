@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     // Fetch all posts when the component mounts
-    axios
+    axios   ////use to create request
       .get("/api/v1/posts")
       .then((response) => {
         setPosts(response.data.data);

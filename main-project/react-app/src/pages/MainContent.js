@@ -24,6 +24,12 @@ function MainContent() {
     return postContent.includes(searchTerm.toLowerCase());
   });
 
+  const filteredPosts = posts.filter((post) => {
+    ///search
+    const postContent = post.content.toLowerCase();
+    return postContent.includes(searchTerm.toLowerCase());
+  });
+
   useEffect(() => {
     axios
       .get("/api/v1/posts")
@@ -39,6 +45,7 @@ function MainContent() {
     try {
       const response = await axios.get("/api/v1/comments");
       const commentsMap = response.data.data.reduce((map, comment) => {
+        //??
         if (!map[comment.postId]) {
           map[comment.postId] = [];
         }

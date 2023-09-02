@@ -212,7 +212,7 @@ function Bookmark() {
   }, []);
 
 
-  const bookmarkedPosts = posts.filter(post => post.isBookMark);
+  const bookmarkedPosts = posts.filter(post => post.isBookMark);  ///filter only true
   return (
     <div className="main-content">
       <div className='post-container'>
@@ -220,8 +220,11 @@ function Bookmark() {
         {bookmarkedPosts.map(post => (
           <div key={post._id} className='user-post' id={post._id}>
             <div className='post-box'>
+
               <div className='user-information'>
-                <button className='profilePic-btn'>Profile</button>
+                  <div className="profilePic">
+                  <img src={ProfileImg}></img>
+                </div>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
                   {/* {console.log('userID:', post.userId)}
