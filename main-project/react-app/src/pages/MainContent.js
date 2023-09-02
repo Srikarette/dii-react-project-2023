@@ -24,12 +24,6 @@ function MainContent() {
     return postContent.includes(searchTerm.toLowerCase());
   });
 
-  const filteredPosts = posts.filter((post) => {
-    ///search
-    const postContent = post.content.toLowerCase();
-    return postContent.includes(searchTerm.toLowerCase());
-  });
-
   useEffect(() => {
     axios
       .get("/api/v1/posts")
