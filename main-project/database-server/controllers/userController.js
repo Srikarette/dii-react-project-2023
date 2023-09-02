@@ -126,3 +126,20 @@ exports.updatePassword = async (req, res) => {
     res.status(500).json({ status: 'error', message: 'An error occurred while updating the password' });
   }
 };
+
+exports.loginUser = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await User.findOne({ username, password });
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+    
+    // Send the user's data including userId to the client
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ error: 'An error occurred during login' });
+  }
+};
+
