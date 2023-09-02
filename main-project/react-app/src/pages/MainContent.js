@@ -56,15 +56,8 @@ function MainContent() {
  
   const handlePostSubmit = () => {
     if (user) {
-<<<<<<< Updated upstream
-      const userId = user._id;
-      console.log("User:", user);
-      console.log("UserId:", user._id);
-
-=======
       const userId = user ? user.userId : null;
   
->>>>>>> Stashed changes
       axios
         .post("/api/v1/posts", {
           content: newPostContent,
@@ -120,7 +113,6 @@ function MainContent() {
         await axios.patch(`/api/v1/posts/${postId}/like`);
         setLikedPosts([...likedPosts, postId]);
       }
-      // Fetch the updated posts to refresh the like count and isBookMark status
       const response = await axios.get("/api/v1/posts");
       setPosts(response.data.data);
     } catch (error) {

@@ -205,27 +205,13 @@ function Bookmark() {
   }, []);
 
 
-<<<<<<< Updated upstream
-  const bookmarkedPosts = posts.filter(post => post.isBookMark);  ///filter only true
-=======
   const bookmarkedPosts = posts.filter(post => post.isBookMark);
 
->>>>>>> Stashed changes
   return (
     <div className="main-content">
       <div className='post-container'>
         {/* Render bookmarked posts */}
         {bookmarkedPosts.map(post => (
-<<<<<<< Updated upstream
-          <div key={post._id} className='user-post' id={post._id}>
-            <div className='post-box'>
-
-              <div className='user-information'>
-                  <div className="profilePic">
-                  <img src={ProfileImg}></img>
-                </div>
-                <div className='username-display'>
-=======
           <div key={post._id} className="user-post" id={post._id}>
             <div className="post-box">
               <div className="user-information">
@@ -234,7 +220,6 @@ function Bookmark() {
                   <img src={ProfileImg}></img>
                 </div>
                 <div className="username-display">
->>>>>>> Stashed changes
                   {/* Display the username of the user who created the post */}
                   {/* {console.log('userID:', post.userId)}  */}
                   {/* {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')} */}
