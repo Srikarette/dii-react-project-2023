@@ -25,10 +25,14 @@ function Login() {
       });
 
       if (response.ok) {
-        // Login was successful, you can redirect to the home page
-        console.log("Login success!");
-        setUser({ username });
-        navigate("/feed"); // Use navigate to change the route
+        const data = await response.json();
+        const { username, userId } = data;
+        console.log('Success Login to:', username); 
+        console.log('Response data:', data); 
+
+        setUser({ username, userId });
+
+        navigate('/feed'); 
       } else {
         // Login failed, handle the error (e.g., display an error message)
         setErrorMessage("Invalid username or password");
