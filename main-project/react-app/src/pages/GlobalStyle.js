@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -8,7 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #d8f3dc; */
+  background-color: rgba(37, 95, 156, 0.937);
+  
 }
 
 code {
@@ -21,11 +21,11 @@ code {
 *{
     margin: 0;
     padding: 0px;
+    text-decoration: none;
 }
 
 a{
     text-decoration: none;
-    color: black;
 }
 
 .mainDisplay{
@@ -36,12 +36,16 @@ a{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  
+  
 }
 
 .main-content{
     width: 100%;
     height: 683px;
-    margin: 0px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
+    background-color:#fff;
+    border-radius:10px;
     /* background: bisque; */
     /* border-left: 2px solid black;
     border-right:2px solid black ; */
@@ -57,9 +61,18 @@ a{
 }
 
 .header button{
-    width: 40%;
-    height: 50px;
+    width: 45%;
+    height:70px;
     margin: 10px 0px 0px 20px;
+    border: none;
+    outline: none;
+    background: #ececec;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.header button:hover{
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .post-container{
@@ -283,6 +296,4 @@ a{
 
 `;
 
-
-
-export default GlobalStyle
+export default GlobalStyle;
