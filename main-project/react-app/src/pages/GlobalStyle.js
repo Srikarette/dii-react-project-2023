@@ -27,6 +27,9 @@ code {
 a{
     text-decoration: none;
 }
+#link{
+    text-decoration: none;
+}
 
 .mainDisplay{
   margin: 0px 0px 0px 0px;
@@ -50,6 +53,7 @@ a{
     /* border-left: 2px solid black;
     border-right:2px solid black ; */
     /* margin-right: 8%; */
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.3);
 }
 
 .header{
@@ -62,7 +66,7 @@ a{
 
 .header button{
     width: 45%;
-    height:70px;
+    height:50px;
     margin: 10px 0px 0px 20px;
     border: none;
     outline: none;
@@ -77,7 +81,7 @@ a{
 
 .post-container{
     padding: 22px;
-    height: 91%;
+    height: 92%;
     /* width: 94%; */
     /* background-color: aqua; */
     display: flex;
@@ -85,26 +89,50 @@ a{
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
+    
 }
 
 .post-menu{
     margin: 0px 0px 0px 0px;
+    
 }
 .serach-slot{
     width: 99.5%;
     height: 35px;
     margin: 0px 0px 25px 0px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border:0px;
+    padding: 2px;
 }
+
+.serach-bar{}
+    
 .post-slot{
     width: 680px;
     height: 50px;
     border: none;
 }
 
+
 .submit-post-btn, .cancel-post-btn{
     margin: 15px 0px 0px 15px;
     float: right;
     width: 70px;
+    border: none;
+    outline: none;
+    height: 35px;
+    background: #ececec;
+    border-radius: 5px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.submit-post-btn:hover{
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+}
+.cancel-post-btn:hover{
+    background: red;
+    color: #fff;
 }
 
 .user-post{
@@ -114,21 +142,22 @@ a{
 .post-box{
     padding: 25px;
     width: 680px;
-
-    border: 1px solid black;
+    font-size: 18px;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 .user-information{
     display: flex;
 }
 .profilePic-btn{
-    background-color: gold;
-    width: 80px;
-    height: 80px;
+    background-color: rgba(37, 95, 156, 0.6);
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
 }
 .username-display{
-    margin: 10px 0px 0px 30px;
-    font-size: 24px;
+    margin: 15px 0px 0px 20px;
+    font-size: 25px;
+    text-transform:bold
 }
 .post-content{
     padding: 25px;
@@ -172,18 +201,23 @@ a{
     margin: 15px 0px 0px 0px;
 }
 .comment-list {
-  margin: 0;
-  border: 1px solid black;
-  background-color: lightblue;
-  height: 200px;
+  margin-bottom: 10px;
+  /* border: 1px solid black; */
+  /* background-color: lightblue; */
+  height: 70px;
   overflow-y: auto; /* Add this line to make the list scrollable */
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
+  padding:10px;
+
 }
 .post-comment{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 680px;
+    margin-right:10px;
 }
+
 .post-comment input{
     width: 75%;
     height: 35px;
@@ -195,15 +229,76 @@ a{
   justify-content: space-between;
   padding: 3px; /* Add some padding to each comment for spacing */
 }
+.comment-btn{
+    display: flex;
+}
 
 .comment-edit-btn {
-  display: flex;
-  gap: 10px; /* Add some space between the buttons */
+  
+  
+  width: 50px;
+  /* gap: 10px; Add some space between the buttons */
+  cursor: pointer;
+
+  border: none;
+    outline: none;
+    height: 25px;
+    background: #ececec;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+.comment-delete-btn {
+  
+  width: 50px;
+  /* gap: 10px; Add some space between the buttons */
+  cursor: pointer;
+margin-right:20px;
+  border: none;
+    outline: none;
+    height: 25px;
+    background: #ececec;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+.comment-edit-btn:hover{
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+  }
+  .comment-delete-btn:hover{
+    background: red;
+    color: #fff;
+  }
+
+
+.submit-comment-btn{
+    margin-right:20px;
+    outline: none;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+.delete-post-btn{
+    outline: none;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+.submit-comment-btn:hover{
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+}
+.delete-post-btn:hover{
+    background: red;
+    color: #fff;
 }
 
 .submit-comment-btn, .delete-post-btn{
     margin: 0px 0px 0px 10px;
-    width: 70px;
+    width: 70px;    
+    height: 35px;
+    font-size:12px;
+    background: #ececec;
+  cursor: pointer;
+  border: none;
 }
 
 /////////////////////This come form self user part///////////////////////////////
@@ -230,9 +325,9 @@ a{
 }
 
 .profile {
-    width: 30px; /* Set a fixed width for the circular profile image */
-    height: 30px; /* Maintain a square aspect ratio */
-    border: 1px solid green;
+    width: 50px; /* Set a fixed width for the circular profile image */
+    height: 50px; /* Maintain a square aspect ratio */
+    border: 1px solid;
     border-radius: 50%; /* Make the image circular */
     display: flex;
     justify-content: center;

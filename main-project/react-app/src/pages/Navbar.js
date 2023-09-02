@@ -48,32 +48,32 @@ function Navbar({ className }) {
 
           {user ? (
             <>
-              <span className="container1">
+              <span className="container2">
                 <Link to="/bookmark">
-                  <div className="text1" data-text="Bookmark">
+                  <div className="text2" data-text="Bookmark">
                     Bookmark
                   </div>
                 </Link>
               </span>
 
-              <span className="container1">
+              <span className="container2">
                 <Link to="/privacy-setting">
-                  <div className="text1" data-text="Privacy">
+                  <div className="text2" data-text="Privacy">
                     Privacy
                   </div>
                 </Link>
               </span>
 
-              <span className="container1" onClick={handleLogout}>
-                <div className="text1" data-text="Log out">
+              <span className="container2" onClick={handleLogout}>
+                <div className="text2" data-text="Log out">
                   Log out
                 </div>
               </span>
             </>
           ) : (
-            <span className="container1">
+            <span className="container2">
               <Link to="/login">
-                <div className="text1" data-text="Log in">
+                <div className="text2" data-text="Log in">
                   Log in
                 </div>
               </Link>
