@@ -15,7 +15,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const [searchTerm, setSearchTerm] = useState('');
 
   const { user } = useUser();
-  console.log('User:', user);
+  // console.log('User:', user);
 
   useEffect(() => {
     axios.get('/api/v1/posts')
@@ -42,6 +42,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
       console.error('Error fetching comments:', error);
     }
   };
+  
   const filteredPosts = posts.filter(post => {
     const postContent = post.content.toLowerCase();
     return postContent.includes(searchTerm.toLowerCase());
@@ -129,6 +130,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
         updatedCommentsMap[postId] = [];
       }
       updatedCommentsMap[postId].push(response.data.data);
+      console.log(response.data.data)
       setCommentsMap(updatedCommentsMap);
   
       // Clear the input field
@@ -233,8 +235,8 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
                 <button className='profilePic-btn'>Profile</button>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
-                  {console.log('userID:', post.userId)}
-                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')}
+                  {/* {console.log('userID:', post.userId)}
+                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')} */}
                   {post.userId ? post.userId.username : 'Anonymous'}
                 </div>
               </div>
