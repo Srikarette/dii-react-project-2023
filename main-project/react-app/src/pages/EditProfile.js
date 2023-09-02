@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import './css/profileEdit.css';
 
 
 function EditProfile(className) {
   return (
     <div className="main-content">
       
-      <div className={className}>
+      <div className='form-container'>
         <form>
           <div className='username-edit'>
             {/* <label for="username">Username:</label> */}

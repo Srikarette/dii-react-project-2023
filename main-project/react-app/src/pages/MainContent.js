@@ -7,7 +7,7 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const [likedPosts, setLikedPosts] = useState([]);
   const [newPostContent, setNewPostContent] = useState('');
   const [newCommentContent, setNewCommentContent] = useState('');
-  const [commentsMap, setCommentsMap] = useState({});
+  const [commentsMap, setCommentsMap] = useState([]);
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedCommentContent, setEditedCommentContent] = useState('');
   const [editingPostId, setEditingPostId] = useState(null);

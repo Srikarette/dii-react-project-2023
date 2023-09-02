@@ -250,6 +250,39 @@ a{
     padding: 10px;
 }
 
+
+.form-container{
+    padding: 22px;
+    width: 90%;
+    height: 85%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+////Edit profile////
+.username-edit{
+    /* background-color: blue; */
+    margin: 30px 0px 0px 0px;
+}
+
+.username-edit  input{
+    width: 500px;
+    height: 50px;
+}
+.description-edit textarea{
+    width: 500px;
+    height: 200px;
+    margin-top: 20px;
+    resize: none;
+}
+
+
+
 `;
+
+
 
 export default GlobalStyle
