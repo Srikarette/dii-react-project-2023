@@ -9,6 +9,14 @@ function Navbar({ className }) {
 
   const username = user ? user.username : "Guest";
 
+  if (user) {
+    // Check if the user object exists (i.e., the user is logged in)
+    console.log("User ID:", user._id);
+    console.log("Username:", user.username);
+  } else {
+    console.log("User is not logged in.");
+  }
+
   const handleLogout = () => {
     // Clear user data and navigate to the login page
     setUser(null);
