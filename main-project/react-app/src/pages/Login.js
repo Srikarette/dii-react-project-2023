@@ -110,14 +110,13 @@ export default styled(Login)`
     background-size: cover;
     background-position: center;
 }  */
-
   .row {
-    width: 700px;
-    height: 700px;
+    width: 550px;
+    height: 550px;
     border-radius: 10px;
     background: #fff;
     padding: 0px;
-    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
   }
 
   .text p {
@@ -155,7 +154,7 @@ export default styled(Login)`
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     outline: none;
     margin-bottom: 20px;
-    /* color: rgba(37, 95, 156, 0.937); */
+    color: #40414a;
   }
   .input-box .input-field label {
     position: absolute;
@@ -171,12 +170,12 @@ export default styled(Login)`
   .input-field input:valid ~ label {
     top: -10px;
     font-size: 13px;
-    /* color: rgba(37, 95, 156, 0.937); */
+    color: #5d5076;
   }
   /*เส้นใต้*/
   .input-field .input:focus,
   .input-field .input:valid {
-    border-bottom: 1px solid rgba(37, 95, 156, 0.937);
+    border-bottom: 1px solid #743ae1;
   }
   .submit {
     border: none;

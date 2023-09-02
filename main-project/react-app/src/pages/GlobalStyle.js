@@ -411,8 +411,6 @@ margin-right:20px;
     resize: none;
 }
 
-
-
 `;
 
 export default GlobalStyle;

@@ -20,11 +20,6 @@ function MainContent() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredPosts = posts.filter((post) => {
-    const postContent = post.content.toLowerCase();
-    return postContent.includes(searchTerm.toLowerCase());
-  });
-
-  const filteredPosts = posts.filter((post) => {
     ///search
     const postContent = post.content.toLowerCase();
     return postContent.includes(searchTerm.toLowerCase());

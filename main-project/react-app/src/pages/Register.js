@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './css/register.css';
-import { Link,useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   // Initialize state for username, password, and success message
@@ -19,24 +19,24 @@ function Register() {
         return;
       }
 
-      const response = await fetch('/api/v1/users', {
-        method: 'POST',
+      const response = await fetch("/api/v1/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
         // Registration was successful
-        setSuccessMessage('Registration successful');
-        navigate('/login');
+        setSuccessMessage("Registration successful");
+        navigate("/login");
       } else {
         // Registration failed, handle the error (e.g., display an error message)
-        console.error('Registration failed');
+        console.error("Registration failed");
       }
     } catch (error) {
-      console.error('Error during registration:', error);
+      console.error("Error during registration:", error);
     }
   };
 
@@ -76,13 +76,12 @@ function Register() {
             </form>
             {successMessage && (
               <div className="success-message">
-                <span style={{ color: 'green' }}>{successMessage}</span>
+                <span style={{ color: "green" }}>{successMessage}</span>
               </div>
             )}
             <div className="signin">
               <span>
-                Already have an account?{' '}
-                <Link to='/login'>Login</Link>
+                Already have an account? <Link to="/login">Login</Link>
               </span>
             </div>
           </div>
@@ -92,4 +91,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default styled(Register)``;
