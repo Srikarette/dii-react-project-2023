@@ -20,7 +20,7 @@ function MainContent() {
    const [searchTerm, setSearchTerm] = useState(""); 
 
  
-   const filteredPosts = posts.filter((post) => {
+   const filteredPosts = posts.filter((post) => {  ///search 
      const postContent = post.content.toLowerCase();
      return postContent.includes(searchTerm.toLowerCase());
    });
@@ -40,7 +40,7 @@ function MainContent() {
   const fetchComments = async () => {
     try {
       const response = await axios.get("/api/v1/comments");
-      const commentsMap = response.data.data.reduce((map, comment) => {
+      const commentsMap = response.data.data.reduce((map, comment) => {  //??
         if (!map[comment.postId]) {
           map[comment.postId] = [];
         }
