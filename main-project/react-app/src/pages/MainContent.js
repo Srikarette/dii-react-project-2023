@@ -15,7 +15,6 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   const [searchTerm, setSearchTerm] = useState('');
 
   const { user } = useUser();
-  // console.log('User:', user);
 
   useEffect(() => {
     axios.get('/api/v1/posts')
@@ -49,18 +48,26 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
   });
 
   
-  const handlePostSubmit = () => {
-    // Send a POST request to create a new post
-    axios.post('/api/v1/posts', { content: newPostContent })
-      .then(response => {
-        // Handle success by updating the posts state
-        setPosts(prevPosts => [...prevPosts, response.data.data]);
-        setNewPostContent(''); // Clear the input field
-      })
-      .catch(error => {
-        console.error('Error creating post:', error);
-      });
-  };
+const handlePostSubmit = () => {
+  
+  const userId = user._id; 
+  console.log(userId);
+
+  axios.post('/api/v1/posts', {
+    content: newPostContent,
+    userId: userId, // Include the user's _id in the request body
+  })
+    .then(response => {
+      // Handle success by updating the posts state
+      setPosts(prevPosts => [...prevPosts, response.data.data]);
+      console.log(response.data.data)
+      setNewPostContent(''); // Clear the input field
+    })
+    .catch(error => {
+      console.error('Error creating post:', error);
+    });
+};
+
 
   const handleEditPost = (postId) => {
     const post = posts.find((post) => post._id === postId);
@@ -191,9 +198,12 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
 
   return (
     <div className="main-content">
+
  
       <div className='post-container'>
-        <div className='post-menu'>
+        
+        {user ?(
+          <div className='post-menu'>
             <div className='serach-bar'>
               <input
                 className='serach-slot'
@@ -202,31 +212,32 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+            </div>
+            <div className='post-box'>
+              <input
+                type='textarea'
+                placeholder='write something'
+                className='post-slot'
+                value={newPostContent}
+                onChange={e => setNewPostContent(e.target.value)}
+              />
+            </div>
+            <div className='post-section'>
+              <input
+                type='submit'
+                className='submit-post-btn'
+                value='Post'
+                onClick={handlePostSubmit}
+              />
+              <input
+                type='submit'
+                className='cancel-post-btn'
+                value='Cancel'
+              />
+            </div>
           </div>
-          <div className='post-box'>
-            <input
-              type='textarea'
-              placeholder='write something'
-              className='post-slot'
-              value={newPostContent}
-              onChange={e => setNewPostContent(e.target.value)}
-            />
-          </div>
-          <div className='post-section'>
-            <input
-              type='submit'
-              className='submit-post-btn'
-              value='Post'
-              onClick={handlePostSubmit}
-            />
-            <input
-              type='submit'
-              className='cancel-post-btn'
-              value='Cancel'
-            />
-          </div>
-        </div>
-
+        ): null}
+       
         {/* Render fetched posts */}
         {filteredPosts.map(post => (
           <div key={post._id} className='user-post' id={post._id}>
@@ -235,8 +246,8 @@ function MainContent() { // Pass the 'user' prop to access the logged-in user
                 <button className='profilePic-btn'>Profile</button>
                 <div className='username-display'>
                   {/* Display the username of the user who created the post */}
-                  {/* {console.log('userID:', post.userId)}
-                  {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')} */}
+                  {/* {console.log('userID:', post.userId)}  */}
+                  {/* {console.log('Username:', post.userId ? post.userId.username : 'Anonymous')} */}
                   {post.userId ? post.userId.username : 'Anonymous'}
                 </div>
               </div>

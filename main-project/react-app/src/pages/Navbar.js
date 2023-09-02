@@ -9,8 +9,15 @@ function Navbar({ className }) {
 
   const username = user ? user.username : "Guest";
 
+  if (user) {
+    // Check if the user object exists.
+    console.log("User ID:", user._id);
+    console.log("Username:", user.username);
+  } else {
+    console.log("User is not logged in.");
+  }
+
   const handleLogout = () => {
-    // Clear user data and navigate to the login page
     setUser(null);
     navigate("/login");
   };
@@ -31,9 +38,9 @@ function Navbar({ className }) {
 
       <div className="side-bar">
         <div className="side-bar-content">
-          <span class="container2">
+          <span className="container2">
             <Link to="/feed">
-              <div class="text2" data-text="Home">
+              <div className="text2" data-text="Home">
                 Home
               </div>
             </Link>
@@ -41,33 +48,32 @@ function Navbar({ className }) {
 
           {user ? (
             <>
-              <span class="container1">
+              <span className="container1">
                 <Link to="/bookmark">
-                  <div class="text1" data-text="Bookmark">
+                  <div className="text1" data-text="Bookmark">
                     Bookmark
                   </div>
                 </Link>
               </span>
 
-              <span class="container1">
+              <span className="container1">
                 <Link to="/privacy-setting">
-                  <div class="text1" data-text="Privacy">
+                  <div className="text1" data-text="Privacy">
                     Privacy
                   </div>
                 </Link>
               </span>
 
-              <span class="container1" onClick={handleLogout}>
-                <div class="text1" data-text="Log out">
+              <span className="container1" onClick={handleLogout}>
+                <div className="text1" data-text="Log out">
                   Log out
                 </div>
               </span>
             </>
           ) : (
-            // Render "Log in" link only when user is not logged in
-            <span class="container1">
+            <span className="container1">
               <Link to="/login">
-                <div class="text1" data-text="Log in">
+                <div className="text1" data-text="Log in">
                   Log in
                 </div>
               </Link>
