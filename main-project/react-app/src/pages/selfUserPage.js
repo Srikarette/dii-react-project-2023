@@ -5,17 +5,21 @@ import { useUser } from '../UserProvider';
 import Image from './images/camt.png';
 import ProfileImg from './images/test.png';
 function SelfUser(){
-  const [posts, setPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState([]);
-  const [newCommentContent, setNewCommentContent] = useState('');
-  const [commentsMap, setCommentsMap] = useState([]);
-  const [editingCommentId, setEditingCommentId] = useState(null);
-  const [editedCommentContent, setEditedCommentContent] = useState('');
-  const [editingPostId, setEditingPostId] = useState(null);
-  const [editedPostContent, setEditedPostContent] = useState('');
-
   const { user } = useUser();
   // console.log('User:', user);
+
+  // Access Redux state
+  const [posts, setPosts] = useState([]);
+  const [commentsMap, setCommentsMap] = useState({});
+  const [likedPosts, setLikedPosts] = useState([]);
+  
+   // Component state
+   const [newCommentContent, setNewCommentContent] = useState("");
+   const [editingCommentId, setEditingCommentId] = useState(null);
+   const [editedCommentContent, setEditedCommentContent] = useState("");
+   const [editingPostId, setEditingPostId] = useState(null);
+   const [editedPostContent, setEditedPostContent] = useState("");
+
 
   useEffect(() => {
     axios.get('/api/v1/posts')

@@ -25,12 +25,12 @@ function Login() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        const { username, userId } = data;
-        console.log('Success Login to:', username); 
-        console.log('Response data:', data); 
+        // const data = await response.json();
+        // const { username, userId } = data;
+        // console.log('Success Login to:', username); 
+        // console.log('Response data:', data); 
 
-        setUser({ username, userId });
+        setUser({ username,});
 
         navigate('/feed'); 
       } else {

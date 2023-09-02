@@ -8,7 +8,7 @@ import {
     ADD_COMMENT_SUCCESS,
     EDIT_COMMENT_SUCCESS,
     DELETE_COMMENT_SUCCESS,
-  } from './postActions';
+  } from './Actions';
   
   const initialState = {
     posts: [],

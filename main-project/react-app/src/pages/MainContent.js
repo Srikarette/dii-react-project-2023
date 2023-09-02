@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import { useUser } from "../UserProvider";
 
 function MainContent() {
-  const [posts, setPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState([]);
-  const [newPostContent, setNewPostContent] = useState("");
-  const [newCommentContent, setNewCommentContent] = useState("");
-  const [commentsMap, setCommentsMap] = useState([]);
-  const [editingCommentId, setEditingCommentId] = useState(null);
-  const [editedCommentContent, setEditedCommentContent] = useState("");
-  const [editingPostId, setEditingPostId] = useState(null);
-  const [editedPostContent, setEditedPostContent] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-
   const { user } = useUser();
+
+  // Access Redux state
+  const [posts, setPosts] = useState([]);
+  const [commentsMap, setCommentsMap] = useState({});
+  const [likedPosts, setLikedPosts] = useState([]);
+  
+
+   // Component state
+   const [newPostContent, setNewPostContent] = useState("");
+   const [newCommentContent, setNewCommentContent] = useState("");
+   const [editingCommentId, setEditingCommentId] = useState(null);
+   const [editedCommentContent, setEditedCommentContent] = useState("");
+   const [editingPostId, setEditingPostId] = useState(null);
+   const [editedPostContent, setEditedPostContent] = useState("");
+   const [searchTerm, setSearchTerm] = useState(""); 
+ 
+   // Filter posts based on searchTerm
+   const filteredPosts = posts.filter((post) => {
+     const postContent = post.content.toLowerCase();
+     return postContent.includes(searchTerm.toLowerCase());
+   });
+  
 
   useEffect(() => {
     axios
@@ -42,11 +54,6 @@ function MainContent() {
       console.error("Error fetching comments:", error);
     }
   };
-
-  const filteredPosts = posts.filter((post) => {
-    const postContent = post.content.toLowerCase();
-    return postContent.includes(searchTerm.toLowerCase());
-  });
 
   const handlePostSubmit = () => {
     const userId = user._id;
