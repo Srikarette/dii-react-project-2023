@@ -29,7 +29,7 @@ function Login() {
         console.log('Success Login to:', username); 
         console.log('Response data:', data); 
 
-        setUser({ username, userId });
+        setUser({ username, userId});
 
         navigate('/feed'); 
       } else {
