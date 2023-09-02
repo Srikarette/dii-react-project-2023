@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import{React, useState } from "react";
 // import "./css/login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../UserProvider";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { loginSuccess,logout } from "./redux/authAction";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const { setUser } = useUser();
+  const dispatch = useDispatch(); // Get the dispatch function from Redux
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,16 +26,18 @@ function Login() {
       });
 
       if (response.ok) {
-        // const data = await response.json();
-        // const { username, userId } = data;
-        // console.log('Success Login to:', username);
-        // console.log('Response data:', data);
-
-        // setUser({ username, userId });
-        setUser({ username });
+        const data = await response.json();
+        console.log('Response data:', data);
+      
+        const { user } = data; 
+        const { username, _id: userId } = user; 
+      
+        console.log('Extracted username:', username);
+        console.log('Extracted userId:', userId);
+      
+        dispatch(loginSuccess({ username, userId }));
         navigate("/feed");
       } else {
-        // Login failed, handle the error (e.g., display an error message)
         setErrorMessage("Invalid username or password");
       }
     } catch (error) {
@@ -42,6 +45,7 @@ function Login() {
       setErrorMessage("An error occurred during login");
     }
   };
+
 
   return (
     <div className="container main">

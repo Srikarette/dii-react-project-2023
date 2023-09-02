@@ -1,24 +1,22 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useUser } from "../UserProvider";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "./redux/authAction";
 import ProfileImg from './images/woman.png';
 function Navbar({ className }) {
-  const { user, setUser } = useUser();
+  const user = useSelector((state) => state.users.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const username = user ? user.username : "Guest";
 
-  if (user) {
-    // Check if the user object exists.
-    console.log("User ID:", user._id);
-    console.log("Username:", user.username);
-  } else {
-    console.log("User is not logged in.");
-  }
+
+  console.log(username);
 
   const handleLogout = () => {
-    setUser(null);
+    // Dispatch an action to log the user out
+    dispatch(logout());
     navigate("/login");
   };
 

@@ -1,37 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { useUser } from '../UserProvider';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import ProfileImg from './images/woman.png';
+import {useSelector} from "react-redux";
 
 function Bookmark() {
-  const { user } = useUser();
-
+  const user = useSelector((state) => state.users.user);
   // Access Redux state
   const [posts, setPosts] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
   const [likedPosts, setLikedPosts] = useState([]);
   
-
    // Component state
+   const [newPostContent, setNewPostContent] = useState("");
    const [newCommentContent, setNewCommentContent] = useState("");
    const [editingCommentId, setEditingCommentId] = useState(null);
    const [editedCommentContent, setEditedCommentContent] = useState("");
    const [editingPostId, setEditingPostId] = useState(null);
    const [editedPostContent, setEditedPostContent] = useState("");
-  // console.log('User:', user);
+   const [searchTerm, setSearchTerm] = useState(""); 
+ 
+   // Filter posts based on searchTerm
+   const filteredPosts = posts.filter((post) => {
+     const postContent = post.content.toLowerCase();
+     return postContent.includes(searchTerm.toLowerCase());
+   });
+  
 
   useEffect(() => {
-    axios.get('/api/v1/posts')
-      .then(response => {
+    axios
+      .get("/api/v1/posts")
+      .then((response) => {
         setPosts(response.data.data);
       })
-      .catch(error => {
-        console.error('Error fetching posts:', error);
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
       });
   }, []);
 
   const fetchComments = async () => {
     try {
-      const response = await axios.get('/api/v1/comments');
+      const response = await axios.get("/api/v1/comments");
       const commentsMap = response.data.data.reduce((map, comment) => {
         if (!map[comment.postId]) {
           map[comment.postId] = [];
@@ -41,10 +49,35 @@ function Bookmark() {
       }, {});
       setCommentsMap(commentsMap);
     } catch (error) {
-      console.error('Error fetching comments:', error);
+      console.error("Error fetching comments:", error);
     }
   };
+
+  const handlePostSubmit = () => {
+    if (user) {
+      const userId = user._id;
+      console.log(userId);
   
+      axios
+        .post("/api/v1/posts", {
+          content: newPostContent,
+          userId: userId, 
+        })
+        .then((response) => {
+          // Handle success by updating the posts state
+          setPosts((prevPosts) => [...prevPosts, response.data.data]);
+          console.log(response.data.data);
+          setNewPostContent(""); // Clear the input field
+        })
+        .catch((error) => {
+          console.error("Error creating post:", error);
+        });
+    } else {
+      // Handle the case where the user is not logged in
+      console.error("User is not logged in.");
+    }
+  };
+
   const handleEditPost = (postId) => {
     const post = posts.find((post) => post._id === postId);
     if (post) {
@@ -56,34 +89,35 @@ function Bookmark() {
   const handleSaveEditedPost = async (postId) => {
     try {
       // Send a PATCH request to update the post content
-      await axios.patch(`/api/v1/posts/${postId}`, { content: editedPostContent });
+      await axios.patch(`/api/v1/posts/${postId}`, {
+        content: editedPostContent,
+      });
 
       // Close the editing mode and fetch the updated posts
       setEditingPostId(null);
-      const response = await axios.get('/api/v1/posts');
+      const response = await axios.get("/api/v1/posts");
       setPosts(response.data.data);
     } catch (error) {
-      console.error('Error editing post:', error);
+      console.error("Error editing post:", error);
     }
   };
-  
 
   const handleLike = async (postId) => {
     try {
       if (likedPosts.includes(postId)) {
         // Unlike the post
         await axios.patch(`/api/v1/posts/${postId}/unlike`);
-        setLikedPosts(likedPosts.filter(id => id !== postId));
+        setLikedPosts(likedPosts.filter((id) => id !== postId));
       } else {
         // Like the post
         await axios.patch(`/api/v1/posts/${postId}/like`);
         setLikedPosts([...likedPosts, postId]);
       }
       // Fetch the updated posts to refresh the like count and isBookMark status
-      const response = await axios.get('/api/v1/posts');
+      const response = await axios.get("/api/v1/posts");
       setPosts(response.data.data);
     } catch (error) {
-      console.error('Error toggling like:', error);
+      console.error("Error toggling like:", error);
     }
   };
 
@@ -92,10 +126,10 @@ function Bookmark() {
       await axios.patch(`/api/v1/posts/${postId}/bookmark`);
 
       // Fetch the updated posts to refresh the bookmark status
-      const response = await axios.get('/api/v1/posts');
+      const response = await axios.get("/api/v1/posts");
       setPosts(response.data.data);
     } catch (error) {
-      console.error('Error toggling bookmark:', error);
+      console.error("Error toggling bookmark:", error);
     }
   };
 
@@ -106,31 +140,31 @@ function Bookmark() {
         postId: postId,
         content: newCommentContent,
       });
-  
+
       // Update the comments map with the new comment
       const updatedCommentsMap = { ...commentsMap };
       if (!updatedCommentsMap[postId]) {
         updatedCommentsMap[postId] = [];
       }
       updatedCommentsMap[postId].push(response.data.data);
-      console.log(response.data.data)
+      console.log(response.data.data);
       setCommentsMap(updatedCommentsMap);
-  
+
       // Clear the input field
-      setNewCommentContent('');
+      setNewCommentContent("");
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error("Error adding comment:", error);
     }
   };
-  
-  
 
   const handleEditComment = (postId, commentId) => {
     // Open the modal for editing
     setEditingCommentId(commentId);
 
     // Get the current content of the comment
-    const comment = commentsMap[postId].find(comment => comment._id === commentId);
+    const comment = commentsMap[postId].find(
+      (comment) => comment._id === commentId
+    );
     if (comment) {
       setEditedCommentContent(comment.content);
     }
@@ -139,13 +173,15 @@ function Bookmark() {
   const handleSaveEditedComment = async (commentId) => {
     try {
       // Send a PATCH request to update the comment content
-      await axios.patch(`/api/v1/comments/${commentId}`, { content: editedCommentContent });
+      await axios.patch(`/api/v1/comments/${commentId}`, {
+        content: editedCommentContent,
+      });
 
       // Close the modal and update the comments
       setEditingCommentId(null);
       fetchComments();
     } catch (error) {
-      console.error('Error editing comment:', error);
+      console.error("Error editing comment:", error);
     }
   };
 
@@ -154,17 +190,20 @@ function Bookmark() {
       await axios.delete(`/api/v1/comments/${commentId}`);
       fetchComments();
     } catch (error) {
-      console.error('Error deleting comment:', error);
+      console.error("Error deleting comment:", error);
     }
   };
 
   const handleDelete = (postId) => {
-    axios.delete(`/api/v1/posts/${postId}`)
+    axios
+      .delete(`/api/v1/posts/${postId}`)
       .then(() => {
-        setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
+        setPosts((prevPosts) =>
+          prevPosts.filter((post) => post._id !== postId)
+        );
       })
-      .catch(error => {
-        console.error('Error deleting post:', error);
+      .catch((error) => {
+        console.error("Error deleting post:", error);
       });
   };
 
@@ -172,9 +211,8 @@ function Bookmark() {
     fetchComments();
   }, []);
 
-  
-  
-  const bookmarkedPosts = posts.filter(post => post.isBookMark); // Filter bookmarked posts
+
+  const bookmarkedPosts = posts.filter(post => post.isBookMark);
   return (
     <div className="main-content">
       <div className='post-container'>

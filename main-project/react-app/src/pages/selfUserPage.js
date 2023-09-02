@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
-import { useUser } from '../UserProvider';
+import { useSelector } from "react-redux";
 import Image from './images/camt.png';
 import ProfileImg from './images/woman.png';
 function SelfUser(){
-  const { user } = useUser();
+  const user = useSelector((state) => state.users.user);
   // console.log('User:', user);
 
   // Access Redux state

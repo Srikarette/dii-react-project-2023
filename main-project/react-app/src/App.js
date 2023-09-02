@@ -21,10 +21,11 @@ function App() {
     username: "testuser", // Get the username from your response
   };
   const [post, setPosts] = useState([]);
+
   useEffect(() => {
     // Fetch all posts when the component mounts
     axios
-      .get("/api/v1/posts") // Use the updated backend route
+      .get("/api/v1/posts")
       .then((response) => {
         setPosts(response.data.data);
       })

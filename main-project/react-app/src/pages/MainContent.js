@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useUser } from "../UserProvider";
 import ProfileImg from './images/woman.png';
+import {useSelector} from "react-redux";
 function MainContent() {
-  const { user } = useUser();
-
+  const user = useSelector((state) => state.users.user);
   // Access Redux state
   const [posts, setPosts] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
   const [likedPosts, setLikedPosts] = useState([]);
   
-
    // Component state
    const [newPostContent, setNewPostContent] = useState("");
    const [newCommentContent, setNewCommentContent] = useState("");
@@ -20,8 +18,8 @@ function MainContent() {
    const [editingPostId, setEditingPostId] = useState(null);
    const [editedPostContent, setEditedPostContent] = useState("");
    const [searchTerm, setSearchTerm] = useState(""); 
+
  
-   // Filter posts based on searchTerm
    const filteredPosts = posts.filter((post) => {
      const postContent = post.content.toLowerCase();
      return postContent.includes(searchTerm.toLowerCase());
@@ -56,23 +54,29 @@ function MainContent() {
   };
 
   const handlePostSubmit = () => {
-    const userId = user._id;
-    console.log(userId);
-
-    axios
-      .post("/api/v1/posts", {
-        content: newPostContent,
-        userId: userId, // Include the user's _id in the request body
-      })
-      .then((response) => {
-        // Handle success by updating the posts state
-        setPosts((prevPosts) => [...prevPosts, response.data.data]);
-        console.log(response.data.data);
-        setNewPostContent(""); // Clear the input field
-      })
-      .catch((error) => {
-        console.error("Error creating post:", error);
-      });
+    if (user) {
+      const userId = user._id;
+      console.log('User:', user);
+      console.log('UserId:', user._id);
+  
+      axios
+        .post("/api/v1/posts", {
+          content: newPostContent,
+          userId: userId, 
+        })
+        .then((response) => {
+          // Handle success by updating the posts state
+          setPosts((prevPosts) => [...prevPosts, response.data.data]);
+          console.log(response.data.data);
+          setNewPostContent(""); // Clear the input field
+        })
+        .catch((error) => {
+          console.error("Error creating post:", error);
+        });
+    } else {
+      // Handle the case where the user is not logged in
+      console.error("User is not logged in.");
+    }
   };
 
   const handleEditPost = (postId) => {
@@ -121,7 +125,6 @@ function MainContent() {
   const handleBookmark = async (postId) => {
     try {
       await axios.patch(`/api/v1/posts/${postId}/bookmark`);
-
       // Fetch the updated posts to refresh the bookmark status
       const response = await axios.get("/api/v1/posts");
       setPosts(response.data.data);
