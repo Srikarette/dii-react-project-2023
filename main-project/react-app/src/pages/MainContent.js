@@ -5,6 +5,7 @@ import ProfileImg from "./images/woman.png";
 import { useSelector } from "react-redux";
 function MainContent() {
   const user = useSelector((state) => state.users.user);
+
   // Access Redux state
   const [posts, setPosts] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
@@ -35,6 +36,7 @@ function MainContent() {
       });
   }, []);
 
+
   const fetchComments = async () => {
     try {
       const response = await axios.get("/api/v1/comments");
@@ -51,13 +53,18 @@ function MainContent() {
       console.error("Error fetching comments:", error);
     }
   };
-
+ 
   const handlePostSubmit = () => {
     if (user) {
+<<<<<<< Updated upstream
       const userId = user._id;
       console.log("User:", user);
       console.log("UserId:", user._id);
 
+=======
+      const userId = user ? user.userId : null;
+  
+>>>>>>> Stashed changes
       axios
         .post("/api/v1/posts", {
           content: newPostContent,
@@ -66,7 +73,6 @@ function MainContent() {
         .then((response) => {
           // Handle success by updating the posts state
           setPosts((prevPosts) => [...prevPosts, response.data.data]);
-          console.log(response.data.data);
           setNewPostContent(""); // Clear the input field
         })
         .catch((error) => {
@@ -77,7 +83,8 @@ function MainContent() {
       console.error("User is not logged in.");
     }
   };
-
+  
+  
   const handleEditPost = (postId) => {
     const post = posts.find((post) => post._id === postId);
     if (post) {
@@ -146,7 +153,7 @@ function MainContent() {
         updatedCommentsMap[postId] = [];
       }
       updatedCommentsMap[postId].push(response.data.data);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setCommentsMap(updatedCommentsMap);
 
       // Clear the input field

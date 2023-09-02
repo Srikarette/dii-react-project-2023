@@ -8,5 +8,6 @@ userRoute.route('/').get(userController.getAllUsers).post(userController.createU
 userRoute.route('/:id').get(userController.getUser).patch(userController.updateUser).delete(userController.deleteUser);
 userRoute.post('/login', userController.loginUser);
 userRoute.patch('/update-password', userController.updatePassword);
+userRoute.route('/check-username').post(userController.checkUsernameAvailability);
 
 module.exports = userRoute;
