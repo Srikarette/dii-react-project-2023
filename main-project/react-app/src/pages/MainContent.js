@@ -367,8 +367,7 @@ function MainContent() {
                     <button
                       className="submit-comment-btn"
                       onClick={() => handleAddComment(post._id)}
-                    >
-                      Comment
+                    >Comment
                     </button>
                   </div>
                 </div>

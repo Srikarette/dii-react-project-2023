@@ -95,6 +95,10 @@ function Navbar({ className }) {
   );
 }
 
+Navbar.propTypes = {
+  className: PropTypes.string.isRequired
+};
+
 export default styled(Navbar)`
   a:link {
     text-decoration: none;
