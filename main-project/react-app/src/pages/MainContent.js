@@ -382,5 +382,4 @@ function MainContent() {
   );
 }
 
-MainContent.propTypes = {}
 export default MainContent;
