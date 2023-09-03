@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import ProfileImg from "./images/woman.png";
+import PropTypes from 'prop-types';
 import { useSelector } from "react-redux";
 function MainContent() {
   const user = useSelector((state) => state.users.user);
@@ -22,8 +23,11 @@ function MainContent() {
   const filteredPosts = posts.filter((post) => {
     ///search
     const postContent = post.content.toLowerCase();
-    return postContent.includes(searchTerm.toLowerCase());
+    const username = post.userId ? post.userId.username.toLowerCase() : '';
+  
+    return postContent.includes(searchTerm.toLowerCase()) || username.includes(searchTerm.toLowerCase());
   });
+  
 
   useEffect(() => {
     axios
@@ -149,7 +153,7 @@ function MainContent() {
       setCommentsMap(updatedCommentsMap);
 
       // Clear the input field
-      setNewCommentContent("");
+      setNewCommentContent('');
     } catch (error) {
       console.error("Error adding comment:", error);
     }
@@ -378,4 +382,5 @@ function MainContent() {
   );
 }
 
+MainContent.propTypes = {}
 export default MainContent;
