@@ -127,7 +127,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-const checkUsernameAvailability = async (req, res) => {
+exports.checkUsernameAvailability = async (req, res) => {
   try {
     const { username } = req.body;
 
