@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
@@ -91,4 +90,4 @@ function Register() {
   );
 }
 
-export default styled(Register)``;
+export default Register;
