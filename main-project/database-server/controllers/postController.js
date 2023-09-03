@@ -4,12 +4,13 @@ const Post = require('../models/postModel');
 
 exports.getAllPosts = async (req, res) => {
   try {
-    const users = await Post.find();
+    // Fetch posts and populate the 'userId' field with user documents
+    const posts = await Post.find().populate('userId');
 
     res.status(200).json({
       status: 'success',
-      results: users.length,
-      data: users,
+      results: posts.length,
+      data: posts,
     });
   } catch (err) {
     res.status(400).json({
@@ -18,6 +19,7 @@ exports.getAllPosts = async (req, res) => {
     });
   }
 };
+
 
 exports.createPost = async (req, res) => {
   try {

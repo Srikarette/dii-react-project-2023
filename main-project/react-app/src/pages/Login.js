@@ -1,40 +1,48 @@
-import React, { useState } from "react";
-import './css/login.css'
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../UserProvider";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+
+import { loginSuccess } from "./redux/authAction";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const { setUser } = useUser();
+  const dispatch = useDispatch(); // Get the dispatch function from Redux
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/v1/users/login', {
-        method: 'POST',
+      const response = await fetch("/api/v1/users/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        // Login was successful, you can redirect to the home page
-        console.log('Login success!')
-        setUser({ username });
-        navigate('/feed'); // Use navigate to change the route
+        const data = await response.json();
+        console.log("Response data:", data);
+
+        const { user } = data;
+        const { username, _id: userId } = user;
+
+        console.log("Extracted username:", username);
+        console.log("Extracted userId:", userId);
+
+        dispatch(loginSuccess({ username, userId }));
+        navigate("/feed");
       } else {
-        // Login failed, handle the error (e.g., display an error message)
-        setErrorMessage('Invalid username or password');
+        setErrorMessage("Invalid username or password");
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      setErrorMessage('An error occurred during login');
+      console.error("Error during login:", error);
+      setErrorMessage("An error occurred during login");
     }
   };
 
@@ -46,7 +54,7 @@ function Login() {
             <header>Login account</header>
             {errorMessage && (
               <div className="error-message">
-                <span style={{ color: 'red' }}>{errorMessage}</span>
+                <span style={{ color: "red", margin: 20 }}>{errorMessage}</span>
               </div>
             )}
             <form onSubmit={handleSubmit}>
@@ -79,8 +87,7 @@ function Login() {
             </form>
             <div className="signin">
               <span>
-                Not an account?{' '}
-                <Link to='/register'>Create Account</Link>
+                Not an account? <Link to="/register">Create Account</Link>
               </span>
             </div>
           </div>
@@ -90,4 +97,112 @@ function Login() {
   );
 }
 
-export default Login;
+export default styled(Login)`
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  /*พื้นหลัง */
+  /* .wrapper {
+    background-image: url('../images//test.png'); 
+    background-size: cover;
+    background-position: center;
+}  */
+  .row {
+    width: 550px;
+    height: 550px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 0px;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .text p {
+    color: #fff;
+    font-size: 20px;
+  }
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .input-box {
+    width: 330px;
+    box-sizing: border-box;
+  }
+
+  .input-box header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 100px;
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+  }
+  .input {
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+  }
+  .input-box .input-field label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  .input-field input:focus ~ label {
+    top: -10px;
+    font-size: 13px;
+  }
+  .input-field input:valid ~ label {
+    top: -10px;
+    font-size: 13px;
+    color: #5d5076;
+  }
+  /*เส้นใต้*/
+  .input-field .input:focus,
+  .input-field .input:valid {
+    border-bottom: 1px solid #743ae1;
+  }
+  .submit {
+    border: none;
+    outline: none;
+    height: 45px;
+    background: #ececec;
+    border-radius: 5px;
+    transition: 0.4s;
+  }
+  .submit:hover {
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+  }
+  .signin {
+    text-align: center;
+    font-size: small;
+    margin-top: 25px;
+  }
+
+  span a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #000;
+  }
+  /* ขีดเส้นใต้*/
+  span a:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+`;
