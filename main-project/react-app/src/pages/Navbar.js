@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./redux/authAction";
 import ProfileImg from "./images/woman.png";
-import logo from "./images/test.png";
+import PropTypes from 'prop-types';
 import home from "./images/homeie.png";
 import bookmark from "./images/bookmark.png";
 import pvc from "./images/locked.png";

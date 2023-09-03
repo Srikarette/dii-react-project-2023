@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import ProfileImg from "./images/woman.png";
-import PropTypes from 'prop-types';
 import { useSelector } from "react-redux";
 function MainContent() {
   const user = useSelector((state) => state.users.user);
