@@ -23,8 +23,11 @@ function MainContent() {
 
   const filteredPosts = posts.filter((post) => {
     const postContent = post.content.toLowerCase();
-    return postContent.includes(searchTerm.toLowerCase());
+    const username = post.userId ? post.userId.username.toLowerCase() : '';
+  
+    return postContent.includes(searchTerm.toLowerCase()) || username.includes(searchTerm.toLowerCase());
   });
+  
 
   useEffect(() => {
     axios
