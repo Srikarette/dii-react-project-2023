@@ -86,22 +86,6 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-exports.loginUser = async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const user = await User.findOne({ username, password });
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid username or password' });
-    }
-    // Send the username along with the success message
-    res.status(200).json({ message: 'Login successful', username: user.username });
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ error: 'An error occurred during login' });
-  }
-};
-
-
 exports.updatePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -142,4 +126,25 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ error: 'An error occurred during login' });
   }
 };
+
+const checkUsernameAvailability = async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    // Query your database to check if the username already exists
+    const user = await User.findOne({ username });
+
+    if (user) {
+      // Username is already in use
+      return res.status(400).json({ message: 'Username is already in use' });
+    }
+
+    // Username is available
+    return res.status(200).json({ message: 'Username is available' });
+  } catch (error) {
+    console.error('Error checking username availability:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
